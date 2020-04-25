@@ -4,9 +4,14 @@ import styled from "styled-components"
 
 import GlobalStyles from "../styles/GlobalStyles"
 import NavigationBar from "./NavigationBar"
+import Footer from "./Footer"
 
 const Wraper = styled.div`
   margin: 0 auto;
+  max-width: 1280px;
+  main {
+    min-height: calc(100vh - 120px);
+  }
 `
 
 const MainLayout = ({ children }) => {
@@ -24,14 +29,10 @@ const MainLayout = ({ children }) => {
     <Wraper>
       <GlobalStyles />
       <NavigationBar />
-      <div>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+
+      <main>{children}</main>
+
+      <Footer />
     </Wraper>
   )
 }

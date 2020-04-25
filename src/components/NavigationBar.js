@@ -1,13 +1,13 @@
 import React, { useState } from "react"
-import styled, { createGlobalStyle } from "styled-components"
+import styled from "styled-components"
 import { Link } from "gatsby"
 
+import Menu from "./Menu"
 import menuOpen from "../assets/icons/menu-open.svg"
 import menuClose from "../assets/icons/menu-close.svg"
-import logoCrown from "../assets/icons/logo-crown.svg"
-import logoInscription from "../assets/icons/logo-krol-pik-rowery.svg"
-import Menu from "./Menu"
+import logo from "../assets/icons/krol-pik-logo-full.svg"
 import DisableScrolling from "../styles/DisableScrolling"
+import device from "../styles/mediaBreakpoints"
 
 const Nav = styled.nav`
   position: relative;
@@ -15,23 +15,26 @@ const Nav = styled.nav`
   width: 100%;
   height: 60px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  a {
-    height: 100%;
-  }
-  img {
-    margin: 0;
-  }
+  justify-content: flex-end;
 `
+
 const MenuBtn = styled.img`
   height: 30px;
   &:hover {
     cursor: pointer;
   }
+  @media ${device.laptop} {
+    display: none;
+  }
 `
+
 const Logo = styled.img`
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
 `
 
 const NavigationBar = () => {
@@ -42,14 +45,10 @@ const NavigationBar = () => {
       <DisableScrolling condition={menuToogle} />
 
       <Link to="/">
-        <Logo src={logoCrown} alt="main-logo" />
+        <Logo src={logo} alt="main-logo" />
       </Link>
 
-      <Link to="/">
-        <Logo src={logoInscription} alt="main-logo" />
-      </Link>
-
-      <Menu condition={menuToogle} />
+      <Menu menuToogle={menuToogle} setMenuToogle={setMenuToogle} />
 
       <MenuBtn
         src={menuToogle ? menuClose : menuOpen}

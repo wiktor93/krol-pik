@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components"
+import device from "./mediaBreakpoints"
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -7,14 +8,37 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-img {
-  margin: 0;
-}
-
 body {
-  height: 150vh;
   font-family: "Montserrat", sans-serif;
 }
+
+h1{
+  font-size:27px;
+}
+
+h2 {
+  margin: 25px 0;
+}
+
+p{
+  font-family: "Lato", sans-serif;
+}
+
+@media ${device.mobileM} {
+    h1 {
+      font-size:30px;
+    }
+  }
+@media ${device.mobileL} {
+    h1 {
+      font-size:32px;
+    }
+  }
+@media ${device.laptop} {
+    h1 {
+      font-size:40px;
+    }
+  }
 `
 
 export default GlobalStyle

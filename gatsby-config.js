@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Król Pik`,
+    title: `Król Pik - Salon Rowerowy`,
     description: `Król Pik - Sklep Rowerowy Tarnobrzeg. Zakręcony Salon Rowerowy. Rowery, części, akcesoria, serwis`,
     author: `w.walczak93@gmail.com`,
   },
@@ -11,6 +11,11 @@ module.exports = {
         fonts: [
           {
             family: `Montserrat`,
+            subsets: [`latin-ext`],
+            variants: [`400`, `600`, `700`, `900`],
+          },
+          {
+            family: `Lato`,
             subsets: [`latin-ext`],
             variants: [`400`, `600`, `700`, `900`],
           },

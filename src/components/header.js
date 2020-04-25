@@ -1,19 +1,22 @@
 import React from "react"
-import PropTypes from "prop-types"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
+const navHeight = "60px"
+
 const StyledHeader = styled.header`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: max-content;
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - ${navHeight});
   overflow: hidden;
   h1 {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0px 5%;
     width: 100%;
-    bottom: 50px;
     color: white;
     text-transform: uppercase;
     text-align: center;
@@ -21,19 +24,19 @@ const StyledHeader = styled.header`
   }
 `
 
-const Header = () => {
+const Header = ({ img, text = "" }) => {
   const data = useStaticQuery(headerQuery)
   return (
     <StyledHeader>
-      <Img fluid={data.file.childImageSharp.fluid} />
-      <h1>Zakręcony salon rowerowy</h1>
+      <Img fluid={img ? img : data.file.childImageSharp.fluid} />
+      <h1>{text}</h1>
     </StyledHeader>
   )
 }
 
 const headerQuery = graphql`
   query {
-    file(name: { eq: "header-img1" }) {
+    file(name: { eq: "hero-mobile" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -42,8 +45,5 @@ const headerQuery = graphql`
     }
   }
 `
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
 
 export default Header
