@@ -5,11 +5,12 @@
   "version": "1.0.0",
   "author": "Wiktor Walczak <w.walczak93@gmail.com>",
   "dependencies": {
-    "@hot-loader/react-dom": "^16.13.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "firebase": "^7.14.2",
     "formik": "^2.1.4",
     "gatsby": "^2.20.25",
     "gatsby-image": "^2.3.4",
+    "gatsby-plugin-firebase": "^0.2.0-beta.4",
     "gatsby-plugin-manifest": "^2.3.5",
     "gatsby-plugin-offline": "^3.1.4",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",

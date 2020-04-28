@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-import data from "../assets/data"
 import useLeafletMap from "../utils/useLeafletMap"
 
 const Wraper = styled.section`
@@ -9,14 +8,13 @@ const Wraper = styled.section`
   width: 90%;
   max-width: 600px;
 `
-
 const MapContainer = styled.div`
   width: 100%;
   height: 340px;
 `
 
 const InteractiveMap = () => {
-  useLeafletMap(data.coordinates, "mapid")
+  useLeafletMap()
 
   return (
     <Wraper>

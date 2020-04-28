@@ -13,7 +13,9 @@ body {
 }
 
 h1{
+  margin: 25px 0;
   font-size:27px;
+  text-align: center;
 }
 
 h2 {
@@ -34,9 +36,19 @@ p{
       font-size:32px;
     }
   }
+@media ${device.tablet} {
+    h1 {
+      font-size:38px;
+    }
+  }
 @media ${device.laptop} {
     h1 {
-      font-size:40px;
+      font-size:45px;
+    }
+  }
+@media ${device.laptopL} {
+    h1 {
+      font-size:60px;
     }
   }
 `

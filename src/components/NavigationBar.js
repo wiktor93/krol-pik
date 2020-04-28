@@ -3,30 +3,20 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 
 import Menu from "./Menu"
-import menuOpen from "../assets/icons/menu-open.svg"
-import menuClose from "../assets/icons/menu-close.svg"
 import logo from "../assets/icons/krol-pik-logo-full.svg"
 import DisableScrolling from "../styles/DisableScrolling"
-import device from "../styles/mediaBreakpoints"
+import MenuButton from "./atoms/MenuButton"
 
 const Nav = styled.nav`
   position: relative;
-  padding: 5px 15px;
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   height: 60px;
+  padding: 5px 15px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-`
-
-const MenuBtn = styled.img`
-  height: 30px;
-  &:hover {
-    cursor: pointer;
-  }
-  @media ${device.laptop} {
-    display: none;
-  }
 `
 
 const Logo = styled.img`
@@ -50,11 +40,7 @@ const NavigationBar = () => {
 
       <Menu menuToogle={menuToogle} setMenuToogle={setMenuToogle} />
 
-      <MenuBtn
-        src={menuToogle ? menuClose : menuOpen}
-        alt="menu-button"
-        onClick={() => setMenuToogle(!menuToogle)}
-      />
+      <MenuButton menuToogle={menuToogle} setMenuToogle={setMenuToogle} />
     </Nav>
   )
 }

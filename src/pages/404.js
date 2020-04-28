@@ -1,13 +1,24 @@
 import React from "react"
+import styled from "styled-components"
 
 import MainLayout from "../components/MainLayout"
-import SEO from "../components/seo"
+import SEO from "../components/atoms/seo"
+
+const Section = styled.section`
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 const NotFoundPage = () => (
   <MainLayout>
     <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <Section>
+      <h1>Nie znaleziony strony</h1>
+      <p>Przepraszamy, wybrana strona nie istnieje.</p>
+    </Section>
   </MainLayout>
 )
 

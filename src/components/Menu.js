@@ -24,14 +24,6 @@ const StyledMenu = styled.ul`
   li {
     padding: 20px 15px;
     font-weight: 600;
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: 0.25s;
-      &:hover {
-        color: rgba(0, 0, 0, 0.5);
-      }
-    }
   }
 
   @media ${device.laptop} {
@@ -42,13 +34,27 @@ const StyledMenu = styled.ul`
   }
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  transition: 0.25s;
+  &:hover {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  &.active {
+    color: rgba(0, 0, 0, 0.5);
+  }
+`
+
 const Menu = ({ menuToogle, setMenuToogle }) => {
   useScreenResize(menuToogle, setMenuToogle)
   return (
     <StyledMenu changeDisplay={menuToogle}>
       {menuElements.map((el, i) => (
         <li key={i}>
-          <Link to={el.path}>{el.name}</Link>
+          <StyledLink to={el.path} activeClassName="active">
+            {el.name}
+          </StyledLink>
         </li>
       ))}
     </StyledMenu>

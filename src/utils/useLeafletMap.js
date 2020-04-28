@@ -1,27 +1,30 @@
 import { useEffect, useRef } from "react"
-import L from "leaflet"
 import "leaflet/dist/leaflet.css"
-import "leaflet-fullscreen"
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css"
-import crownIcon from "../assets/icons/krol-pik-crown-logo.svg"
 
-const useLeafletMap = (coordinatesArray = [], mapid) => {
+import crownIcon from "../assets/icons/krol-pik-crown-logo.svg"
+import data from "../assets/data"
+
+//importing leaflet and leaflet-fullscreen when "window" will be available
+const L = typeof window !== `undefined` ? require("leaflet") : null
+typeof window !== `undefined` && require("leaflet-fullscreen")
+
+const useLeafletMap = () => {
   const mapRef = useRef(null)
-  const myIcon = L.icon({
-    iconUrl: crownIcon,
-    iconSize: [38, 48],
-    iconAnchor: [19, 48],
-    popupAnchor: [0, -48],
-    // shadowUrl: 'my-icon-shadow.png',
-    // shadowSize: [68, 95],
-    // shadowAnchor: [22, 94]
-  })
+
   useEffect(() => {
     //create map
-    mapRef.current = L.map(mapid, { zoomControl: false }).setView(
-      coordinatesArray,
+    mapRef.current = L.map("mapid", { zoomControl: false }).setView(
+      data.coordinates,
       14
     )
+    //create icon
+    const myIcon = L.icon({
+      iconUrl: crownIcon,
+      iconSize: [38, 48],
+      iconAnchor: [19, 48],
+      popupAnchor: [0, -48],
+    })
 
     //add map layers
     L.tileLayer(
@@ -47,12 +50,10 @@ const useLeafletMap = (coordinatesArray = [], mapid) => {
     L.control.zoom({ position: "bottomright" }).addTo(mapRef.current)
 
     //add marker
-    L.marker(coordinatesArray, { icon: myIcon })
+    L.marker(data.coordinates, { icon: myIcon })
       .addTo(mapRef.current)
       .bindPopup("Salon rowerowy Król Pik")
-  }, [coordinatesArray, mapid, myIcon])
-
-  return
+  }, [])
 }
 
 export default useLeafletMap

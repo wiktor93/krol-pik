@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import styled from "styled-components"
 
 import MainLayout from "../components/MainLayout"
-import SEO from "../components/seo"
+import SEO from "../components/atoms/seo"
 import Header from "../components/Header"
 import assetsData from "../assets/data"
 

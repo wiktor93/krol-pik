@@ -7,24 +7,10 @@ import NavigationBar from "./NavigationBar"
 import Footer from "./Footer"
 
 const Wraper = styled.div`
-  margin: 0 auto;
-  max-width: 1280px;
-  main {
-    min-height: calc(100vh - 120px);
-  }
+  min-height: 100vh;
 `
 
 const MainLayout = ({ children }) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
-
   return (
     <Wraper>
       <GlobalStyles />

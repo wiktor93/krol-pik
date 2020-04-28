@@ -2,23 +2,28 @@ import React from "react"
 import styled from "styled-components"
 
 const StyledFooter = styled.footer`
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 60px;
+  width: 100%;
   margin-top: 50px;
+  padding: 20px 10%;
+
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
   background-color: #000;
   color: white;
-  text-align: center;
+
+  p {
+    padding: 0 2px;
+  }
 `
 
 const Footer = () => {
   return (
     <StyledFooter>
-      © 2014-{new Date().getFullYear()} Król Pik. Wszystkie prawa zastrzeżone
+      <p>© 2014 - {new Date().getFullYear()} Król Pik.</p>
+      <p> Wszystkie prawa zastrzeżone.</p>
     </StyledFooter>
   )
 }

@@ -1,12 +1,13 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 
 import MainLayout from "../components/MainLayout"
 import Header from "../components/Header"
-import SEO from "../components/seo"
+import SEO from "../components/atoms/seo"
 import device from "../styles/mediaBreakpoints"
-import Button from "../components/Button"
+import Button from "../components/atoms/Button"
+import HomePageSection from "../components/HomePageSection"
 
 const HeadingWraper = styled.div`
   position: relative;
@@ -26,15 +27,7 @@ const HeadingBlock = styled.div`
     color: white;
     text-shadow: 3px 3px 3px #000000;
   }
-  /* p {
-    font-size: 15px;
-    color: white;
-    text-shadow: 3px 3px 3px #000000;
-    padding-bottom: 10px;
-  } */
-  button {
-    margin-top: 10px;
-  }
+
   @media ${device.tablet} {
     width: 60%;
     bottom: 50%;
@@ -53,17 +46,16 @@ const MainPage = ({ data }) => {
       <SEO title="Home" />
 
       <HeadingWraper>
-        <Header img={imgSources} />
+        <Header img={imgSources} fullHeight />
         <HeadingBlock>
           <h1>Zakręcony salon rowerowy</h1>
-          {/* <p>Rowery, części, akcesoria, serwis</p> */}
-          <Button>Sprawdź nasz sklep</Button>
+          <Link to="/sklep">
+            <Button>Sprawdź nasz sklep</Button>
+          </Link>
         </HeadingBlock>
       </HeadingWraper>
 
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
+      <HomePageSection />
     </MainLayout>
   )
 }
@@ -79,7 +71,7 @@ export const query = graphql`
     }
     desktopImage: file(name: { eq: "hero" }) {
       childImageSharp {
-        fluid(quality: 100) {
+        fluid(maxWidth: 1920, quality: 100) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }

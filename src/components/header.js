@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 const navHeight = "60px"
@@ -8,13 +7,25 @@ const navHeight = "60px"
 const StyledHeader = styled.header`
   position: relative;
   width: 100%;
-  height: max-content;
-  max-height: calc(100vh - ${navHeight});
+  height: 100%;
+  max-height: ${props =>
+    props.fullHeight ? `calc(100vh - ${navHeight})` : "50vh"};
   overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .gatsby-image-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
   h1 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    margin: 0;
     padding: 0px 5%;
     width: 100%;
     color: white;
@@ -24,26 +35,13 @@ const StyledHeader = styled.header`
   }
 `
 
-const Header = ({ img, text = "" }) => {
-  const data = useStaticQuery(headerQuery)
+const Header = ({ img, text = "", fullHeight }) => {
   return (
-    <StyledHeader>
-      <Img fluid={img ? img : data.file.childImageSharp.fluid} />
+    <StyledHeader fullHeight={fullHeight}>
+      <Img fluid={img} />
       <h1>{text}</h1>
     </StyledHeader>
   )
 }
-
-const headerQuery = graphql`
-  query {
-    file(name: { eq: "hero-mobile" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
 
 export default Header
