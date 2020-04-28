@@ -72,5 +72,6 @@ yarn-error.log
 notes.txt
 
 #firebase
+.firebase
 .firebaserc
 firebase*

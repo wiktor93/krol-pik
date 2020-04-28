@@ -11,6 +11,10 @@ import HomePageSection from "../components/HomePageSection"
 
 const HeadingWraper = styled.div`
   position: relative;
+  header {
+    height: calc(100vh - 60px);
+    max-height: none;
+  }
 `
 const HeadingBlock = styled.div`
   position: absolute;
@@ -46,7 +50,7 @@ const MainPage = ({ data }) => {
       <SEO title="Home" />
 
       <HeadingWraper>
-        <Header img={imgSources} fullHeight />
+        <Header img={imgSources} />
         <HeadingBlock>
           <h1>Zakręcony salon rowerowy</h1>
           <Link to="/sklep">

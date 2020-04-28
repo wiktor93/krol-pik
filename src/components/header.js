@@ -2,14 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
-const navHeight = "60px"
-
 const StyledHeader = styled.header`
   position: relative;
   width: 100%;
   height: 100%;
-  max-height: ${props =>
-    props.fullHeight ? `calc(100vh - ${navHeight})` : "50vh"};
+  max-height: 50vh;
   overflow: hidden;
 
   display: flex;
@@ -35,9 +32,9 @@ const StyledHeader = styled.header`
   }
 `
 
-const Header = ({ img, text = "", fullHeight }) => {
+const Header = ({ img, text = "" }) => {
   return (
-    <StyledHeader fullHeight={fullHeight}>
+    <StyledHeader>
       <Img fluid={img} />
       <h1>{text}</h1>
     </StyledHeader>
