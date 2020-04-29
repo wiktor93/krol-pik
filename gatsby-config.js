@@ -3,7 +3,7 @@ require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `Król Pik - Salon Rowerowy`,
-    description: `Król Pik - Sklep Rowerowy Tarnobrzeg. Zakręcony Salon Rowerowy. Rowery, części, akcesoria, serwis`,
+    description: `Król Pik - Salon Rowerowy Tarnobrzeg. Rowery, części, akcesoria, serwis`,
     author: `w.walczak93@gmail.com`,
   },
   plugins: [
@@ -44,7 +44,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/icons/favicon.svg`, // This path is relative to the root of the site.
+        icon: `src/assets/icons/favicon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

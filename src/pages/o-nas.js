@@ -20,6 +20,10 @@ const HistorySection = styled.section`
   }
 `
 
+const StyledImg = styled(Img)`
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+`
+
 const AboutPage = ({ data }) => (
   <MainLayout>
     <SEO title="O nas" />
@@ -27,9 +31,9 @@ const AboutPage = ({ data }) => (
     <HistorySection>
       <h2>Nasza historia</h2>
       {assetsData.aboutText}
-      <Img fluid={data.shop.childImageSharp.fluid} />
-      <br />
       <p>Serdecznie Zapraszamy!</p>
+      <br />
+      <StyledImg fluid={data.shop.childImageSharp.fluid} />
     </HistorySection>
   </MainLayout>
 )
