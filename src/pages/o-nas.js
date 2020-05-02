@@ -3,9 +3,9 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 
-import MainLayout from "../components/MainLayout"
-import SEO from "../components/atoms/seo"
-import Header from "../components/Header"
+import MainLayout from "../layouts/MainLayout"
+import SEO from "../components/molecules/SEO"
+import Header from "../components/molecules/Header"
 import assetsData from "../assets/data"
 
 const HistorySection = styled.section`

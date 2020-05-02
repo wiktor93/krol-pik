@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import useLeafletMap from "../utils/useLeafletMap"
+import useLeafletMap from "../../utils/useLeafletMap"
 
 const Wraper = styled.section`
   margin: 0 auto 50px;

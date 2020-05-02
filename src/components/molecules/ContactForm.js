@@ -2,8 +2,8 @@ import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import styled from "styled-components"
 
-import Input from "./atoms/Input"
-import Button from "./atoms/Button"
+import Input from "../atoms/Input"
+import Button from "../atoms/Button"
 
 const Wraper = styled.div`
   form {

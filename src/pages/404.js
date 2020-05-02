@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
-import MainLayout from "../components/MainLayout"
-import SEO from "../components/atoms/seo"
+import MainLayout from "../layouts/MainLayout"
+import SEO from "../components/molecules/SEO"
 
 const Section = styled.section`
   height: calc(100vh - 60px);

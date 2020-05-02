@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import MainLayout from "../components/MainLayout"
-import SEO from "../components/atoms/seo"
-import Header from "../components/Header"
-import BusinessCard from "../components/BusinessCard"
-import ContactForm from "../components/ContactForm"
-import InteractiveMap from "../components/InteractiveMap"
+import MainLayout from "../layouts/MainLayout"
+import SEO from "../components/molecules/SEO"
+import Header from "../components/molecules/Header"
+import BusinessCard from "../components/molecules/BusinessCard"
+import ContactForm from "../components/molecules/ContactForm"
+import InteractiveMap from "../components/molecules/InteractiveMap"
 
 const ContactPage = ({ data }) => (
   <MainLayout>

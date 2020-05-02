@@ -75,3 +75,5 @@ notes.txt
 .firebase
 .firebaserc
 firebase*
+
+jsconfig.json

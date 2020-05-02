@@ -2,12 +2,12 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 
-import MainLayout from "../components/MainLayout"
-import Header from "../components/Header"
-import SEO from "../components/atoms/seo"
+import MainLayout from "../layouts/MainLayout"
+import Header from "../components/molecules/Header"
+import SEO from "../components/molecules/SEO"
 import device from "../styles/mediaBreakpoints"
 import Button from "../components/atoms/Button"
-import HomePageSection from "../components/HomePageSection"
+import HomePageSection from "../components/organisms/HomePageSection"
 
 const HeadingWraper = styled.div`
   position: relative;

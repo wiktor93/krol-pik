@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 
-import data from "../assets/data"
-import phoneIcon from "../assets/icons/phone-call-icon.svg"
-import emailIcon from "../assets/icons/email-icon.svg"
-import clockIcon from "../assets/icons/clock.svg"
-import adressIcon from "../assets/icons/location-pin.svg"
+import data from "../../assets/data"
+import phoneIcon from "../../assets/icons/phone-call-icon.svg"
+import emailIcon from "../../assets/icons/email-icon.svg"
+import clockIcon from "../../assets/icons/clock.svg"
+import adressIcon from "../../assets/icons/location-pin.svg"
 
 const Wraper = styled.div`
   margin: 50px auto;

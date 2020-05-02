@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-import menuElements from "../assets/menuElements"
-import device from "../styles/mediaBreakpoints"
-import useScreenResize from "../utils/useScreenResize"
+import menuElements from "../../assets/menuElements"
+import device from "../../styles/mediaBreakpoints"
+import useScreenResize from "../../utils/useScreenResize"
 
 const StyledMenu = styled.ul`
   margin: 0;

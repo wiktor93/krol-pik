@@ -3,8 +3,8 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import GlobalStyles from "../styles/GlobalStyles"
-import NavigationBar from "./NavigationBar"
-import Footer from "./Footer"
+import NavigationBar from "../components/organisms/NavigationBar"
+import Footer from "../components/molecules/Footer"
 
 const Wraper = styled.div`
   min-height: 100vh;

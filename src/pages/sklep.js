@@ -1,8 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 
-import MainLayout from "../components/MainLayout"
-import SEO from "../components/atoms/seo"
+import MainLayout from "../layouts/MainLayout"
+import SEO from "../components/molecules/SEO"
+import Pagination from "../components/molecules/Pagination"
+import ProductGallery from "../components/organisms/ProductGallery"
 
 const Section = styled.section`
   margin: 0 auto;
@@ -16,9 +18,8 @@ const Section = styled.section`
 const ShopPage = ({ data }) => (
   <MainLayout>
     <SEO title="Sklep" />
-    <Section>
-      <h1>Strona w trakcie budowy</h1>
-    </Section>
+    <ProductGallery />
+    <Pagination />
   </MainLayout>
 )
 
