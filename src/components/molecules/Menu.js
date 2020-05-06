@@ -31,6 +31,7 @@ const StyledMenu = styled.ul`
     height: 100%;
     display: flex;
     flex-direction: row;
+    transform: translateX(15px);
   }
 `
 

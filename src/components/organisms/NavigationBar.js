@@ -3,9 +3,10 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 
 import Menu from "../molecules/Menu"
-import logo from "../../assets/icons/krol-pik-logo-full.svg"
-import DisableScrolling from "../../styles/DisableScrolling"
 import MenuButton from "../atoms/MenuButton"
+import DisableScrolling from "../../styles/DisableScrolling"
+import logo from "../../assets/icons/krol-pik-logo-full.svg"
+import device from "../../styles/mediaBreakpoints"
 
 const Wraper = styled.div`
   width: 100%;
@@ -19,10 +20,14 @@ const Nav = styled.nav`
   max-width: 1280px;
   margin: 0 auto;
   height: 60px;
-  padding: 5px 15px;
+  padding: 5px 5%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  @media ${device.laptop} {
+    width: 90%;
+    padding: 5px 0;
+  }
 `
 
 const Logo = styled.img`

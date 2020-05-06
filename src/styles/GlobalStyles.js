@@ -22,8 +22,21 @@ h2 {
   margin: 25px 0;
 }
 
-p{
+a {
+  text-decoration: none;
+}
+
+p {
   font-family: "Lato", sans-serif;
+}
+
+button {
+  &:hover{
+    cursor:pointer
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 @media ${device.mobileM} {

@@ -11,6 +11,11 @@ const Wraper = styled.div`
     max-width: 600px;
     margin: 0 auto 50px auto;
 
+    input,
+    textarea {
+      margin-bottom: 15px;
+    }
+
     label {
       font-weight: 600;
       padding-bottom: 3px;

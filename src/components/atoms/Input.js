@@ -1,24 +1,19 @@
 import React from "react"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
-const InputMixin = css`
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 15px;
-  border: 1px black solid;
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif;
-`
+import { InputMixin } from "../../styles/styledMixins"
 
 const StyledInput = styled.input`
   ${InputMixin}
+  height: 45px;
 `
 
 const StyledTextArea = styled.textarea`
   ${InputMixin};
   resize: vertical;
+  padding: 10px;
   max-width: 100%;
-  min-height: 100px;
+  min-height: 200px;
 `
 
 const Input = props => {

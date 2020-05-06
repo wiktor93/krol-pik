@@ -3,23 +3,32 @@ import styled from "styled-components"
 
 import MainLayout from "../layouts/MainLayout"
 import SEO from "../components/molecules/SEO"
-import Pagination from "../components/molecules/Pagination"
-import ProductGallery from "../components/organisms/ProductGallery"
+import ShopNavigator from "../components/molecules/ShopNavigator"
+import ProductHandlingPanel from "../components/organisms/ProductHandlingPanel"
+import ProductsGallery from "../components/organisms/ProductsGallery"
+import device from "../styles/mediaBreakpoints"
 
-const Section = styled.section`
+const Wraper = styled.section`
+  width: 90%;
   margin: 0 auto;
-  height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 1280px;
+  @media ${device.laptop} {
+    display: grid;
+    grid-template-columns: 250px auto;
+    gap: 25px;
+  }
 `
 
 const ShopPage = ({ data }) => (
   <MainLayout>
     <SEO title="Sklep" />
-    <ProductGallery />
-    <Pagination />
+
+    <ShopNavigator />
+
+    <Wraper>
+      <ProductHandlingPanel />
+      <ProductsGallery />
+    </Wraper>
   </MainLayout>
 )
 

@@ -7,6 +7,7 @@ module.exports = {
     author: `w.walczak93@gmail.com`,
   },
   plugins: [
+    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
@@ -38,7 +39,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `Król Pik - Salon Rowerowy`,
         short_name: `starter`,
         start_url: `/`,
         background_color: `#fff`,
