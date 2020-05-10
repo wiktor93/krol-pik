@@ -1,8 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import { ThemeProvider } from "@material-ui/core/styles"
 
 import GlobalStyles from "../styles/GlobalStyles"
+import muiTheme from "../styles/muiTheme"
 import NavigationBar from "../components/organisms/NavigationBar"
 import Footer from "../components/molecules/Footer"
 
@@ -13,12 +15,14 @@ const Wraper = styled.div`
 const MainLayout = ({ children }) => {
   return (
     <Wraper>
-      <GlobalStyles />
-      <NavigationBar />
+      <ThemeProvider theme={muiTheme}>
+        <GlobalStyles />
+        <NavigationBar />
 
-      <main>{children}</main>
+        <main>{children}</main>
 
-      <Footer />
+        <Footer />
+      </ThemeProvider>
     </Wraper>
   )
 }

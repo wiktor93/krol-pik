@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import styled from "styled-components"
 import { makeStyles } from "@material-ui/core/styles"
 import { Collapse, List, ListItem, ListItemText } from "@material-ui/core"
 import { ExpandLess, ExpandMore } from "@material-ui/icons"
 
-import Button from "../atoms/Button"
+import ExpansionButton from "../atoms/ExpansionButton"
+import ExpansionDrawer from "../atoms/ExpansionDrawer"
 import { categories } from "../../assets/SVGIconPaths"
 
 const useStyles = makeStyles(theme => ({
@@ -16,79 +16,75 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StyledList = styled(List)`
-  border: 1px solid black;
-  border-top: none;
-`
-
 const CategoryList = () => {
+  const [listSwitch, setListSwitch] = useState(true)
+  const [open, setOpen] = useState(false)
   const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
-  const [listSwitch, setListSwitch] = useState(false)
 
   const handleClick = () => {
     setOpen(!open)
   }
   return (
     <div>
-      <Button
-        secondary
-        SVGPath={categories}
+      <ExpansionButton
+        iconPath={categories}
+        condition={listSwitch}
         onClick={() => setListSwitch(!listSwitch)}
       >
         Kategorie
-      </Button>
+      </ExpansionButton>
+      <Collapse in={listSwitch} timeout="auto">
+        <ExpansionDrawer>
+          <List
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            className={classes.root}
+          >
+            <ListItem button>
+              <ListItemText primary="Rowery" />
+            </ListItem>
 
-      <Collapse in={listSwitch} timeout="auto" unmountOnExit>
-        <StyledList
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-          className={classes.root}
-        >
-          <ListItem button>
-            <ListItemText primary="Rowery" />
-          </ListItem>
+            <ListItem button>
+              <ListItemText primary="Odzież rowerowa" />
+            </ListItem>
 
-          <ListItem button>
-            <ListItemText primary="Odzież rowerowa" />
-          </ListItem>
+            <ListItem button onClick={handleClick}>
+              <ListItemText primary="Cześci rowerowe" />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
 
-          <ListItem button onClick={handleClick}>
-            <ListItemText primary="Cześci rowerowe" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  <ListItemText primary="Siodełka" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemText primary="Łańcuchy" />
+                </ListItem>
+              </List>
+            </Collapse>
 
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Siodełka" />
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Łańcuchy" />
-              </ListItem>
-            </List>
-          </Collapse>
+            <ListItem button onClick={handleClick}>
+              <ListItemText primary="Cześci rowerowe" />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
 
-          <ListItem button onClick={handleClick}>
-            <ListItemText primary="Cześci rowerowe" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  <ListItemText primary="Siodełka" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemText primary="Łańcuchy" />
+                </ListItem>
+              </List>
+            </Collapse>
 
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Siodełka" />
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Łańcuchy" />
-              </ListItem>
-            </List>
-          </Collapse>
-
-          <ListItem button>
-            <ListItemText primary="Akcesoria rowerowe" />
-          </ListItem>
-        </StyledList>
+            <ListItem button>
+              <ListItemText primary="Akcesoria rowerowe" />
+            </ListItem>
+          </List>
+        </ExpansionDrawer>
       </Collapse>
     </div>
   )

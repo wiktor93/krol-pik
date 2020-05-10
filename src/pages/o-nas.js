@@ -17,6 +17,7 @@ const HistorySection = styled.section`
   }
   p {
     text-align: justify;
+    font-family: "Lato", sans-serif;
   }
 `
 

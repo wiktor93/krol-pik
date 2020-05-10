@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import styled from "styled-components"
 import {
   Collapse,
   Radio,
@@ -8,25 +7,9 @@ import {
   FormControl,
 } from "@material-ui/core"
 
-import Button from "../atoms/Button"
+import ExpansionButton from "../atoms/ExpansionButton"
 import { sort } from "../../assets/SVGIconPaths"
-
-const Wraper = styled.div`
-  border: 1px solid black;
-  border-top: none;
-  padding: 8px 16px;
-
-  .MuiRadio-colorSecondary.Mui-checked {
-    color: black;
-  }
-
-  .MuiRadio-root,
-  .MuiRadio-colorSecondary.Mui-checked {
-    &:hover {
-      background-color: unset;
-    }
-  }
-`
+import ExpansionDrawer from "../atoms/ExpansionDrawer"
 
 const SortingBar = () => {
   const [listSwitch, setListSwitch] = useState(false)
@@ -37,16 +20,18 @@ const SortingBar = () => {
 
   return (
     <div>
-      <Button
-        secondary
-        SVGPath={sort}
-        onClick={() => setListSwitch(!listSwitch)}
+      <ExpansionButton
+        iconPath={sort}
+        condition={listSwitch}
+        onClick={() => {
+          setListSwitch(!listSwitch)
+        }}
       >
         Sortuj
-      </Button>
+      </ExpansionButton>
 
       <Collapse in={listSwitch} timeout="auto" unmountOnExit>
-        <Wraper>
+        <ExpansionDrawer>
           <FormControl>
             <RadioGroup value={selectedValue} onChange={handleChange}>
               <FormControlLabel
@@ -77,7 +62,7 @@ const SortingBar = () => {
               />
             </RadioGroup>
           </FormControl>
-        </Wraper>
+        </ExpansionDrawer>
       </Collapse>
     </div>
   )

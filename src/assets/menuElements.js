@@ -1,8 +1,8 @@
 const menuElements = [
-  { name: "sklep", path: "/sklep" },
-  { name: "zakres usług", path: "/zakres-uslug" },
-  { name: "o nas", path: "/o-nas" },
-  { name: "kontakt", path: "/kontakt" },
+  { name: "Sklep", path: "/sklep" },
+  { name: "Zakres usług", path: "/zakres-uslug" },
+  { name: "O nas", path: "/o-nas" },
+  { name: "Kontakt", path: "/kontakt" },
 ]
 
 export default menuElements

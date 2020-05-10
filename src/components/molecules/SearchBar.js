@@ -2,24 +2,25 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { SvgIcon } from "@material-ui/core"
 
-import { InputMixin } from "../../styles/styledMixins"
-import CloseIcon from "@material-ui/icons/Close"
 import { loupe } from "../../assets/SVGIconPaths"
+import TextClearButton from "../atoms/TextCleanButton"
+import { border1Mixin } from "../../styles/styledMixins"
 
 const Wraper = styled.div`
-  ${InputMixin}
+  ${border1Mixin}
   height: 45px;
   padding: 5px 25px;
   display: flex;
   align-items: center;
 `
+
 const Input = styled.input`
-  border: none;
+  margin: 0 10px;
   width: calc(100% - 24px);
   height: 95%;
-  padding-right: 10px;
+  border: none;
   font-size: 16px;
-  font-family: "Montserrat", sans-serif;
+  font-family: inherit;
 
   &::placeholder {
     color: black;
@@ -32,23 +33,6 @@ const Input = styled.input`
     outline: none;
     &::placeholder {
       color: rgba(0, 0, 0, 0.5);
-    }
-  }
-`
-
-const TextClearButton = styled.div`
-  display: ${props => (props.visible ? "block" : "none")};
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  border: none;
-  transition: 0.3s;
-  svg {
-    fill: rgba(0, 0, 0, 0.5);
-    transition: 0.3s;
-    &:hover {
-      cursor: pointer;
-      fill: rgba(0, 0, 0, 1);
     }
   }
 `
@@ -66,9 +50,10 @@ const SearchBar = () => {
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
       ></Input>
-      <TextClearButton visible={inputValue} onClick={() => setInputValue("")}>
-        <CloseIcon />
-      </TextClearButton>
+      <TextClearButton
+        visible={inputValue}
+        onClick={() => setInputValue("")}
+      ></TextClearButton>
     </Wraper>
   )
 }

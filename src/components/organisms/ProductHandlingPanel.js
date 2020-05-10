@@ -15,10 +15,6 @@ const Aside = styled.aside`
   grid-template-columns: 1fr;
   gap: 10px;
 
-  button {
-    width: 100%;
-    justify-content: left;
-  }
   @media ${device.tablet} {
     grid-template-columns: 1fr 1fr;
   }

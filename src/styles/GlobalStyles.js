@@ -22,13 +22,15 @@ h2 {
   margin: 25px 0;
 }
 
+h4{
+  margin: 10px 0;
+  font-weight:600;
+}
+
 a {
   text-decoration: none;
 }
 
-p {
-  font-family: "Lato", sans-serif;
-}
 
 button {
   &:hover{

@@ -20,7 +20,7 @@ const Section = styled.section`
   }
 `
 
-const ShopNavigator = () => {
+const ShopNavigatorBar = () => {
   return (
     <Section>
       <h1>Sklep</h1>
@@ -31,4 +31,4 @@ const ShopNavigator = () => {
     </Section>
   )
 }
-export default ShopNavigator
+export default ShopNavigatorBar

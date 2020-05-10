@@ -22,6 +22,11 @@ module.exports = {
             subsets: [`latin-ext`],
             variants: [`400`, `600`, `700`, `900`],
           },
+          {
+            family: `Roboto`,
+            subsets: [`latin-ext`],
+            variants: [`400`, `600`, `700`, `900`],
+          },
         ],
       },
     },

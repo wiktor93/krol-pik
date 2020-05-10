@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import MainLayout from "../layouts/MainLayout"
 import SEO from "../components/molecules/SEO"
-import ShopNavigator from "../components/molecules/ShopNavigator"
+import ShopNavigatorBar from "../components/molecules/ShopNavigatorBar"
 import ProductHandlingPanel from "../components/organisms/ProductHandlingPanel"
 import ProductsGallery from "../components/organisms/ProductsGallery"
 import device from "../styles/mediaBreakpoints"
@@ -23,7 +23,7 @@ const ShopPage = ({ data }) => (
   <MainLayout>
     <SEO title="Sklep" />
 
-    <ShopNavigator />
+    <ShopNavigatorBar />
 
     <Wraper>
       <ProductHandlingPanel />

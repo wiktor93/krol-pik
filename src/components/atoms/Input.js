@@ -1,15 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 
-import { InputMixin } from "../../styles/styledMixins"
+import { inputMixin } from "../../styles/styledMixins"
 
 const StyledInput = styled.input`
-  ${InputMixin}
+  ${inputMixin}
   height: 45px;
 `
 
 const StyledTextArea = styled.textarea`
-  ${InputMixin};
+  ${inputMixin};
   resize: vertical;
   padding: 10px;
   max-width: 100%;
