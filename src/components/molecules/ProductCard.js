@@ -1,45 +1,58 @@
 import React from "react"
 import styled from "styled-components"
 
-const Article = styled.article`
-  width: 100%;
+import accoutingNumberFormat from "../../utils/accoutingNumberFormat"
+import { hoverShadowMixin } from "../../styles/styledMixins"
+
+const StyledArticle = styled.article`
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
   transition: 0.3s;
   text-align: center;
 
   picture {
+    overflow: hidden;
+    padding: 15px;
+
     img {
-      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      object-fit: scale-down;
     }
   }
 
   p {
     margin-bottom: 5px;
     span {
-      color: rgba(0, 0, 0, 0.5);
+      color: rgba(0, 0, 0, 0.6);
     }
   }
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 0 1px black, 0px 0px 2px 1px rgba(0, 0, 0, 0.08),
-      0px 4px 8px 0px rgba(0, 0, 0, 0.16);
+    ${hoverShadowMixin}
+    transform: translateY(-4px)
   }
 `
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+  const { productName, manufacturer, pictureURL, price } = product
+  const formatedPrice = accoutingNumberFormat(price)
+
   return (
-    <Article>
+    <StyledArticle>
       <picture>
-        <img src="https://source.unsplash.com/random" alt="" />
+        <img src={pictureURL} alt={productName} />
       </picture>
-      <p>Rower Romet MTB 29 cali</p>
+      <p>{manufacturer}</p>
       <p>
-        <span>2 150,00 zł</span>
+        <span>{productName}</span>
       </p>
-    </Article>
+      <p>{formatedPrice} zł</p>
+    </StyledArticle>
   )
 }
 export default ProductCard

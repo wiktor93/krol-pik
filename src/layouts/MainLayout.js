@@ -9,7 +9,7 @@ import NavigationBar from "../components/organisms/NavigationBar"
 import Footer from "../components/molecules/Footer"
 
 const Wraper = styled.div`
-  min-height: 100vh;
+  min-height: 101vh;
 `
 
 const MainLayout = ({ children }) => {

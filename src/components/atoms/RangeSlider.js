@@ -20,8 +20,8 @@ const RangeSlider = () => {
       <h4>Cena</h4>
       <Slider
         value={value}
-        step="100"
-        max="9999"
+        step={100}
+        max={9999}
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"

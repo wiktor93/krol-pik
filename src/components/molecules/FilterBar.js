@@ -4,7 +4,7 @@ import { Collapse } from "@material-ui/core"
 
 import Button from "../atoms/Button"
 import ExpansionButton from "../atoms/ExpansionButton"
-import { filter } from "../../assets/SVGIconPaths"
+import { filter, trashCan, checkMark } from "../../assets/SVGIconPaths"
 import RangeSlider from "../atoms/RangeSlider"
 import ManufacturerCheckbox from "../molecules/ManufacturerCheckbox"
 import { border1Mixin } from "../../styles/styledMixins"
@@ -18,7 +18,7 @@ const CollapseContentWraper = styled.div`
 `
 
 const FilterBar = () => {
-  const [listSwitch, setListSwitch] = useState(true)
+  const [listSwitch, setListSwitch] = useState(false)
 
   return (
     <div>
@@ -34,7 +34,12 @@ const FilterBar = () => {
         <CollapseContentWraper>
           <RangeSlider />
           <ManufacturerCheckbox />
-          <Button>Zatwierdź</Button>
+          <Button secondary SVGPath={trashCan}>
+            Wyczyść
+          </Button>
+          <Button secondary SVGPath={checkMark}>
+            Zatwierdź
+          </Button>
         </CollapseContentWraper>
       </Collapse>
     </div>

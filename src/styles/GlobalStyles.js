@@ -29,6 +29,7 @@ h4{
 
 a {
   text-decoration: none;
+  color:inherit;
 }
 
 

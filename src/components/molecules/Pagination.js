@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { rightArrow, leftArrow } from "../../assets/SVGIconPaths"
 
 const StyledPagination = styled.div`
+  margin-top: 75px;
   display: flex;
   justify-content: center;
   align-items: center;

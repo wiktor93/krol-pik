@@ -5,7 +5,7 @@ import MainLayout from "../layouts/MainLayout"
 import SEO from "../components/molecules/SEO"
 import ShopNavigatorBar from "../components/molecules/ShopNavigatorBar"
 import ProductHandlingPanel from "../components/organisms/ProductHandlingPanel"
-import ProductsGallery from "../components/organisms/ProductsGallery"
+import AllProductsGallery from "../components/organisms/AllProductsGallery"
 import device from "../styles/mediaBreakpoints"
 
 const Wraper = styled.section`
@@ -19,7 +19,7 @@ const Wraper = styled.section`
   }
 `
 
-const ShopPage = ({ data }) => (
+const ShopPage = () => (
   <MainLayout>
     <SEO title="Sklep" />
 
@@ -27,7 +27,7 @@ const ShopPage = ({ data }) => (
 
     <Wraper>
       <ProductHandlingPanel />
-      <ProductsGallery />
+      <AllProductsGallery />
     </Wraper>
   </MainLayout>
 )
