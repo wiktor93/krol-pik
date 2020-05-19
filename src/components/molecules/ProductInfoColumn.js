@@ -1,60 +1,72 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
-import { Snackbar } from "@material-ui/core"
-import { Alert } from "@material-ui/lab"
+import { connect } from "react-redux"
 
 import Button from "../atoms/Button"
-import Select from "../atoms/Select"
 import { addToBasket } from "../../assets/SVGIconPaths"
+import Select from "../atoms/Select"
+import accoutingNumberFormat from "../../utils/accoutingNumberFormat"
+import { notificationSwitch } from "../../redux/actions"
 
 const StyledWraper = styled.div`
   width: 100%;
   max-width: 400px;
   display: grid;
+  grid-template-rows: repeat(5, max-content);
   row-gap: 25px;
+
   h2 {
-    margin: 0;
+    margin: 0 0 10px;
   }
   .sku-code {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+  }
+  strong {
+    margin-right: 10px;
   }
 `
 
-const ProductInfoColumn = ({ product }) => {
-  const [open, setOpen] = useState(false)
-  const { productName, SKUCode, price } = product
-  const handleButtonClick = () => {
-    setOpen(true)
-  }
-  const handleSnackBarClose = (event, reason) => {
-    if (reason === "clickaway") return
-    setOpen(false)
-  }
+const ProductInfoColumn = ({ product, notificationSwitch }) => {
+  const { productName, SKUCode, price, pictureURL, productPath } = product
+  const formatedPrice = accoutingNumberFormat(price)
+  const handleButtonClick = () =>
+    notificationSwitch(true, "Produkt został dodany do koszyka")
+
   return (
     <StyledWraper>
-      <h2>{productName}</h2>
-      <p className="sku-code">Kod producenta: {SKUCode}</p>
-      <p>Cena: {price} zł</p>
+      <div>
+        <h2>{productName}</h2>
+        <p className="sku-code">Kod producenta: {SKUCode}</p>
+      </div>
+
+      <p className="price">
+        <strong>Cena:</strong> {formatedPrice} zł
+      </p>
+
       <Select inputLabel="Kolor" />
       <Select inputLabel="Rozmiar ramy" />
-      <Button SVGPath={addToBasket} onClick={handleButtonClick}>
+
+      <Button
+        SVGPath={addToBasket}
+        onClick={handleButtonClick}
+        height="56px"
+        className="snipcart-add-item"
+        data-item-id={SKUCode}
+        data-item-price={price}
+        data-item-name={productName}
+        data-item-url={productPath}
+        data-item-image={pictureURL}
+        data-item-description="Krótki opis produktu 2-3 zdania?"
+        data-item-max-quantity={5}
+        data-item-custom1-name="Kolor"
+        data-item-custom1-options="Czarny|Biały"
+        data-item-custom2-name={null}
+        data-item-custom2-options={null}
+      >
         Dodaj do koszyka
       </Button>
-      <Snackbar
-        open={open}
-        autoHideDuration={3000}
-        onClose={handleSnackBarClose}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleSnackBarClose}
-          severity="success"
-          variant="filled"
-        >
-          Produkt został dodany do koszyka
-        </Alert>
-      </Snackbar>
     </StyledWraper>
   )
 }
-export default ProductInfoColumn
+export default connect(null, { notificationSwitch })(ProductInfoColumn)

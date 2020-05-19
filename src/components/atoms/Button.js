@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 const StyledButton = styled.button`
-  height: 45px;
+  height: ${({ height }) => (height ? height : "45px")};
   padding: 0 25px;
   border: 1px solid black;
   background-color: ${props => (props.secondary ? "#fff" : "#000")};
@@ -17,7 +17,7 @@ const StyledButton = styled.button`
 
   svg {
     display: block;
-    margin-right: 5px;
+    margin-right: 10px;
     height: 24px;
     width: 20px;
     fill: ${props => (props.secondary ? "#000" : "#fff")};
@@ -34,9 +34,10 @@ const StyledButton = styled.button`
   }
 `
 
-const Button = ({ children, secondary, SVGPath, onClick }) => {
+const Button = props => {
+  const { children, secondary, SVGPath, height } = props
   return (
-    <StyledButton secondary={secondary} onClick={onClick}>
+    <StyledButton secondary={secondary} height={height} {...props}>
       {SVGPath && (
         <svg>
           <path d={SVGPath}></path>

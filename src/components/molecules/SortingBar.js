@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import {
   Collapse,
   Radio,
@@ -6,34 +6,31 @@ import {
   FormControlLabel,
   FormControl,
 } from "@material-ui/core"
+import { connect } from "react-redux"
 
 import ExpansionButton from "../atoms/ExpansionButton"
 import { sort } from "../../assets/SVGIconPaths"
 import ExpansionDrawer from "../atoms/ExpansionDrawer"
+import { updateSortingBar } from "../../redux/actions"
 
-const SortingBar = () => {
-  const [listSwitch, setListSwitch] = useState(false)
-  const [selectedValue, setSelectedValue] = useState("latest")
-  const handleChange = event => {
-    setSelectedValue(event.target.value)
-  }
+const SortingBar = ({ sortingBar, updateSortingBar }) => {
+  const { isOpen, sortBy } = sortingBar
+  const handleChange = event => updateSortingBar(isOpen, event.target.value)
 
   return (
     <div>
       <ExpansionButton
         iconPath={sort}
-        condition={listSwitch}
-        onClick={() => {
-          setListSwitch(!listSwitch)
-        }}
+        condition={isOpen}
+        onClick={() => updateSortingBar(!isOpen, sortBy)}
       >
         Sortuj
       </ExpansionButton>
 
-      <Collapse in={listSwitch} timeout="auto" unmountOnExit>
+      <Collapse in={isOpen} timeout="auto" unmountOnExit>
         <ExpansionDrawer>
           <FormControl>
-            <RadioGroup value={selectedValue} onChange={handleChange}>
+            <RadioGroup value={sortBy} onChange={handleChange}>
               <FormControlLabel
                 value="ASC"
                 control={<Radio />}
@@ -67,4 +64,7 @@ const SortingBar = () => {
     </div>
   )
 }
-export default SortingBar
+
+const mapStateToProps = ({ sortingBar, sortBy }) => ({ sortingBar, sortBy })
+
+export default connect(mapStateToProps, { updateSortingBar })(SortingBar)

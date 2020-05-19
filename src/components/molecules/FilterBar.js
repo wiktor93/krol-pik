@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Collapse } from "@material-ui/core"
+import { connect } from "react-redux"
 
 import Button from "../atoms/Button"
 import ExpansionButton from "../atoms/ExpansionButton"
@@ -8,6 +9,7 @@ import { filter, trashCan, checkMark } from "../../assets/SVGIconPaths"
 import RangeSlider from "../atoms/RangeSlider"
 import ManufacturerCheckbox from "../molecules/ManufacturerCheckbox"
 import { border1Mixin } from "../../styles/styledMixins"
+import { updateFilterBar } from "../../redux/actions"
 
 const CollapseContentWraper = styled.div`
   ${border1Mixin}
@@ -17,20 +19,19 @@ const CollapseContentWraper = styled.div`
   padding: 8px 16px;
 `
 
-const FilterBar = () => {
-  const [listSwitch, setListSwitch] = useState(false)
-
+const FilterBar = ({ filterBar, updateFilterBar }) => {
+  const { isOpen } = filterBar
   return (
     <div>
       <ExpansionButton
         iconPath={filter}
-        onClick={() => setListSwitch(!listSwitch)}
-        condition={listSwitch}
+        onClick={() => updateFilterBar(!isOpen)}
+        condition={isOpen}
       >
         Filtruj
       </ExpansionButton>
 
-      <Collapse in={listSwitch} timeout="auto">
+      <Collapse in={isOpen} timeout="auto">
         <CollapseContentWraper>
           <RangeSlider />
           <ManufacturerCheckbox />
@@ -45,4 +46,6 @@ const FilterBar = () => {
     </div>
   )
 }
-export default FilterBar
+const mapStateToProps = ({ filterBar }) => ({ filterBar })
+
+export default connect(mapStateToProps, { updateFilterBar })(FilterBar)

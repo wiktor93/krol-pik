@@ -5,6 +5,7 @@ Website with shop service created for bike salon.
 ## Used technologies and libraries:
 
 - React, Gatsby,
+- Redux
 - Styled Components
 - Formik
 - Leaflet

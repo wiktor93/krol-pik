@@ -1,34 +1,65 @@
 import React from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
+import Breadcrumbs from "@material-ui/core/Breadcrumbs"
+import NavigateNextIcon from "@material-ui/icons/NavigateNext"
+import { connect } from "react-redux"
+
+import ShopingCartButton from "../atoms/ShopingCartButton"
+import { updateChosenCategory } from "../../redux/actions"
+import device from "../../styles/mediaBreakpoints"
 
 const Section = styled.section`
-  margin: 0 auto;
+  margin: 15px auto;
   width: 90%;
   max-width: 1280px;
-  padding: 15px 0;
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  h1 {
-    margin: 0;
-    flex-grow: 1;
-    padding-left: 40px;
+
+  .MuiBreadcrumbs-root {
+    display: none;
   }
-  img {
-    height: 40px;
+
+  @media ${device.laptop} {
+    .MuiBreadcrumbs-root {
+      display: block;
+      flex-grow: 1;
+    }
   }
 `
 
-const ShopNavigatorBar = () => {
+const ShopNavigatorBar = props => {
+  const {
+    chosenCategory,
+    productName,
+    updateChosenCategory,
+    productPath,
+  } = props
+
   return (
     <Section>
-      <h1>Sklep</h1>
-      <img
-        src="https://image.flaticon.com/icons/svg/1671/1671123.svg"
-        alt="shoping cart"
-      />
+      <Breadcrumbs
+        separator={<NavigateNextIcon fontSize="small" />}
+        aria-label="breadcrumb"
+      >
+        <Link to="/">Start</Link>
+        <Link to="/sklep" onClick={() => updateChosenCategory(null)}>
+          Sklep
+        </Link>
+        {chosenCategory && <Link to="/sklep">{chosenCategory}</Link>}
+        {productName && <Link to={productPath}>{productName}</Link>}
+      </Breadcrumbs>
+
+      <ShopingCartButton />
     </Section>
   )
 }
-export default ShopNavigatorBar
+
+const mapStateToProps = ({ categoryList }) => ({
+  chosenCategory: categoryList.chosenCategory,
+})
+
+export default connect(mapStateToProps, { updateChosenCategory })(
+  ShopNavigatorBar
+)

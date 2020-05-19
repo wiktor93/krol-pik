@@ -2,44 +2,43 @@ import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import { Collapse, List, ListItem, ListItemText } from "@material-ui/core"
 import { ExpandLess, ExpandMore } from "@material-ui/icons"
+import { connect } from "react-redux"
 
 import ExpansionButton from "../atoms/ExpansionButton"
 import ExpansionDrawer from "../atoms/ExpansionDrawer"
 import { categories } from "../../assets/SVGIconPaths"
+import { categoryListSwitch, updateChosenCategory } from "../../redux/actions"
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
+  nested: { paddingLeft: theme.spacing(4) },
 }))
 
-const CategoryList = () => {
-  const [listSwitch, setListSwitch] = useState(true)
-  const [open, setOpen] = useState(false)
-  const classes = useStyles()
+const CategoryList = props => {
+  const {
+    categoryList: { isOpen },
+    categoryListSwitch,
+    updateChosenCategory,
+  } = props
 
-  const handleClick = () => {
-    setOpen(!open)
+  const [isSubCatOpen, setSubCatOpen] = useState(false)
+  const handleClick = () => setSubCatOpen(!isSubCatOpen)
+  const classes = useStyles()
+  const handleCategoryUpdate = e => {
+    console.log(e.target.textContent)
+    updateChosenCategory(e.target.textContent)
   }
   return (
     <div>
       <ExpansionButton
         iconPath={categories}
-        condition={listSwitch}
-        onClick={() => setListSwitch(!listSwitch)}
+        condition={isOpen}
+        onClick={() => categoryListSwitch(!isOpen)}
       >
         Kategorie
       </ExpansionButton>
-      <Collapse in={listSwitch} timeout="auto">
+      <Collapse in={isOpen} timeout="auto">
         <ExpansionDrawer>
-          <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            className={classes.root}
-          >
+          <List className={classes.root} onClick={handleCategoryUpdate}>
             <ListItem button>
               <ListItemText primary="Rowery" />
             </ListItem>
@@ -50,26 +49,10 @@ const CategoryList = () => {
 
             <ListItem button onClick={handleClick}>
               <ListItemText primary="Cześci rowerowe" />
-              {open ? <ExpandLess /> : <ExpandMore />}
+              {isSubCatOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
 
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem button className={classes.nested}>
-                  <ListItemText primary="Siodełka" />
-                </ListItem>
-                <ListItem button className={classes.nested}>
-                  <ListItemText primary="Łańcuchy" />
-                </ListItem>
-              </List>
-            </Collapse>
-
-            <ListItem button onClick={handleClick}>
-              <ListItemText primary="Cześci rowerowe" />
-              {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={isSubCatOpen} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItem button className={classes.nested}>
                   <ListItemText primary="Siodełka" />
@@ -89,4 +72,10 @@ const CategoryList = () => {
     </div>
   )
 }
-export default CategoryList
+
+const mapStateToProps = ({ categoryList }) => ({ categoryList })
+
+export default connect(mapStateToProps, {
+  categoryListSwitch,
+  updateChosenCategory,
+})(CategoryList)

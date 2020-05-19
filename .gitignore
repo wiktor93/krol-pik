@@ -68,8 +68,9 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-#notes
+#notes & dummies
 notes.txt
+dummies/
 
 #firebase
 .firebase

@@ -1,4 +1,6 @@
 require("dotenv").config()
+const snipcartTranslation = require("./src/assets/snipcart/snipcartTranslation")
+// const snipcartCustomFields = require("./src/assets/snipcart/snipcartCustomsFields")
 
 module.exports = {
   siteMetadata: {
@@ -7,6 +9,41 @@ module.exports = {
     author: `w.walczak93@gmail.com`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-snipcart-advanced`,
+      options: {
+        version: "3.0.12",
+        defaultLang: "en",
+        currency: "PLN",
+        openCartOnAdd: false,
+        locales: {
+          en: snipcartTranslation,
+        },
+        innerHTML: `
+        <billing section="bottom">
+
+        <fieldset class="snipcart-form__set">
+          <div className="snipcart-form__field">
+            <snipcart-label  class="snipcart__font--tiny"   for="phone"  >
+                Nr telefonu
+                </snipcart-label>
+              <snipcart-input name="phone"></snipcart-input>
+          </div>
+
+          <div class="snipcart-form__field-checkbox">
+              <snipcart-checkbox name="subscribeToNewsletter"></snipcart-checkbox>
+              <snipcart-label
+                class="snipcart__font--tiny snipcart-form__label--checkbox"
+                for="subscribeToNewsletter"
+              >
+                Chcę otrzymywać informacje o promocjach.
+              </snipcart-label>
+            </div>
+        </fieldset>
+        </billing>
+        `,
+      },
+    },
     `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
@@ -46,6 +83,7 @@ module.exports = {
       options: {
         name: `Król Pik - Salon Rowerowy`,
         short_name: `starter`,
+        lang: `fr`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#000`,
