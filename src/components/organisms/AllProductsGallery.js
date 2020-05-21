@@ -1,11 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import { connect } from "react-redux"
 
 import ProductCard from "../molecules/ProductCard"
 import Pagination from "../molecules/Pagination"
-import dummyProducts from "../../assets/dummies/dummyProducts"
 import slugify from "../../utils/slugify"
+import sortProducts from "../../utils/sortProducts"
+import filterProducts from "../../utils/filterProducts"
 
 const Wraper = styled.section`
   margin: 0 auto 50px;
@@ -16,12 +18,30 @@ const Wraper = styled.section`
   }
 `
 
-const AllProductsGallery = () => {
+const AllProductsGallery = props => {
+  const {
+    products,
+    sortBy,
+    priceRange,
+    checkedManufacturers,
+    searchBarInputValue,
+    chosenCategory,
+  } = props
+
+  const sortedProducts = sortProducts(products, sortBy)
+  const filteredProducts = filterProducts(
+    sortedProducts,
+    priceRange,
+    checkedManufacturers,
+    searchBarInputValue,
+    chosenCategory
+  )
+
   return (
     <Wraper>
       <h2>Polecamy</h2>
       <section>
-        {dummyProducts.map((el, i) => (
+        {filteredProducts.map((el, i) => (
           <Link
             key={i}
             to={`/sklep/${slugify(el.category)}/${slugify(el.productName)}`}
@@ -34,4 +54,19 @@ const AllProductsGallery = () => {
     </Wraper>
   )
 }
-export default AllProductsGallery
+
+const mapStateToProps = ({
+  products,
+  sortingBar,
+  filterBar,
+  searchBarInputValue,
+  categoryList,
+}) => ({
+  products,
+  sortBy: sortingBar.sortBy,
+  priceRange: filterBar.priceRange,
+  checkedManufacturers: filterBar.checkedManufacturers,
+  searchBarInputValue,
+  chosenCategory: categoryList.chosenCategory,
+})
+export default connect(mapStateToProps, null)(AllProductsGallery)

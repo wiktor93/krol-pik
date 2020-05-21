@@ -14,19 +14,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CategoryList = props => {
-  const {
-    categoryList: { isOpen },
-    categoryListSwitch,
-    updateChosenCategory,
-  } = props
+  const { isOpen, categoryListSwitch, updateChosenCategory } = props
 
   const [isSubCatOpen, setSubCatOpen] = useState(false)
   const handleClick = () => setSubCatOpen(!isSubCatOpen)
   const classes = useStyles()
-  const handleCategoryUpdate = e => {
-    console.log(e.target.textContent)
-    updateChosenCategory(e.target.textContent)
-  }
+  const handleCategoryUpdate = e => updateChosenCategory(e.target.textContent)
   return (
     <div>
       <ExpansionButton
@@ -48,7 +41,7 @@ const CategoryList = props => {
             </ListItem>
 
             <ListItem button onClick={handleClick}>
-              <ListItemText primary="Cześci rowerowe" />
+              <ListItemText primary="Części rowerowe" />
               {isSubCatOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
 
@@ -73,7 +66,9 @@ const CategoryList = props => {
   )
 }
 
-const mapStateToProps = ({ categoryList }) => ({ categoryList })
+const mapStateToProps = ({ categoryList }) => ({
+  isOpen: categoryList.isOpen,
+})
 
 export default connect(mapStateToProps, {
   categoryListSwitch,

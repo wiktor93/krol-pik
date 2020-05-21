@@ -5,11 +5,15 @@ import { connect } from "react-redux"
 
 import Button from "../atoms/Button"
 import ExpansionButton from "../atoms/ExpansionButton"
-import { filter, trashCan, checkMark } from "../../assets/SVGIconPaths"
-import RangeSlider from "../atoms/RangeSlider"
+import { filter, trashCan } from "../../assets/SVGIconPaths"
+import PriceRangeSlider from "../atoms/PriceRangeSlider"
 import ManufacturerCheckbox from "../molecules/ManufacturerCheckbox"
 import { border1Mixin } from "../../styles/styledMixins"
-import { updateFilterBar } from "../../redux/actions"
+import {
+  setFilterBarExpansion,
+  setCheckedManufacturers,
+  setPriceRange,
+} from "../../redux/actions"
 
 const CollapseContentWraper = styled.div`
   ${border1Mixin}
@@ -19,13 +23,30 @@ const CollapseContentWraper = styled.div`
   padding: 8px 16px;
 `
 
-const FilterBar = ({ filterBar, updateFilterBar }) => {
-  const { isOpen } = filterBar
+const FilterBar = props => {
+  const {
+    isOpen,
+    setFilterBarExpansion,
+    setPriceRange,
+    checkedManufacturers,
+    setCheckedManufacturers,
+    maxPrice,
+  } = props
+
+  const handleClick = () => {
+    const clearedManufacturersObject = {}
+    for (const key in checkedManufacturers) {
+      clearedManufacturersObject[key] = false
+    }
+    setCheckedManufacturers(clearedManufacturersObject)
+    setPriceRange([0, maxPrice])
+  }
+
   return (
     <div>
       <ExpansionButton
         iconPath={filter}
-        onClick={() => updateFilterBar(!isOpen)}
+        onClick={() => setFilterBarExpansion(!isOpen)}
         condition={isOpen}
       >
         Filtruj
@@ -33,19 +54,24 @@ const FilterBar = ({ filterBar, updateFilterBar }) => {
 
       <Collapse in={isOpen} timeout="auto">
         <CollapseContentWraper>
-          <RangeSlider />
+          <PriceRangeSlider />
           <ManufacturerCheckbox />
-          <Button secondary SVGPath={trashCan}>
-            Wyczyść
-          </Button>
-          <Button secondary SVGPath={checkMark}>
-            Zatwierdź
+          <Button secondary SVGPath={trashCan} onClick={handleClick}>
+            Wyczyść filtry
           </Button>
         </CollapseContentWraper>
       </Collapse>
     </div>
   )
 }
-const mapStateToProps = ({ filterBar }) => ({ filterBar })
+const mapStateToProps = ({ filterBar, maxPrice }) => ({
+  isOpen: filterBar.isOpen,
+  checkedManufacturers: filterBar.checkedManufacturers,
+  maxPrice,
+})
 
-export default connect(mapStateToProps, { updateFilterBar })(FilterBar)
+export default connect(mapStateToProps, {
+  setFilterBarExpansion,
+  setCheckedManufacturers,
+  setPriceRange,
+})(FilterBar)

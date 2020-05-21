@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { SvgIcon } from "@material-ui/core"
+import { connect } from "react-redux"
 
 import { loupe } from "../../assets/SVGIconPaths"
 import TextClearButton from "../atoms/TextCleanButton"
 import { border1Mixin } from "../../styles/styledMixins"
+import { setSearchBarInputValue } from "../../redux/actions"
 
 const Wraper = styled.div`
   ${border1Mixin}
@@ -37,8 +39,8 @@ const Input = styled.input`
   }
 `
 
-const SearchBar = () => {
-  const [inputValue, setInputValue] = useState("")
+const SearchBar = props => {
+  const { searchBarInputValue, setSearchBarInputValue } = props
   return (
     <Wraper>
       <SvgIcon>
@@ -47,14 +49,17 @@ const SearchBar = () => {
       <Input
         type="text"
         placeholder="Szukaj..."
-        value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
+        value={searchBarInputValue}
+        onChange={e => setSearchBarInputValue(e.target.value)}
       ></Input>
       <TextClearButton
-        visible={inputValue}
-        onClick={() => setInputValue("")}
+        visible={searchBarInputValue}
+        onClick={() => setSearchBarInputValue("")}
       ></TextClearButton>
     </Wraper>
   )
 }
-export default SearchBar
+
+const mapStateToProps = ({ searchBarInputValue }) => ({ searchBarInputValue })
+
+export default connect(mapStateToProps, { setSearchBarInputValue })(SearchBar)
