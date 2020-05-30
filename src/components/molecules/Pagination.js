@@ -1,43 +1,65 @@
 import React from "react"
 import styled from "styled-components"
+import LeftArrow from "@material-ui/icons/ArrowBackIosRounded"
+import RightArrow from "@material-ui/icons/ArrowForwardIosRounded"
+import { connect } from "react-redux"
 
-import { rightArrow, leftArrow } from "../../assets/SVGIconPaths"
+import { setPaginationPage } from "../../redux/actions"
 
 const StyledPagination = styled.div`
-  margin-top: 75px;
+  margin-top: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  span {
-    width: 50px;
-    height: 50px;
-    padding: 10px;
-    border-radius: 50%;
-    transition: 0.3s;
-
+  svg {
+    margin: 0 10px;
     &:hover {
       cursor: pointer;
       fill: rgba(0, 0, 0, 0.5);
     }
   }
+  .disabled {
+    fill: rgba(0, 0, 0, 0.2);
+    &:hover {
+      cursor: auto;
+      fill: rgba(0, 0, 0, 0.2);
+    }
+  }
 `
 
-const Pagination = () => {
+const Pagination = props => {
+  const { currentPage, allPages, setPaginationPage } = props
+
+  const handleClick = arrowType => {
+    if (arrowType === "left" && currentPage > 1)
+      setPaginationPage(currentPage - 1)
+    if (arrowType === "right" && currentPage < allPages)
+      setPaginationPage(currentPage + 1)
+  }
+
   return (
     <StyledPagination>
-      <span>
-        <svg viewBox="0 0 20 20">
-          <path d={leftArrow}></path>
-        </svg>
-      </span>
-      <p>Strona: 1 z 1</p>
-      <span>
-        <svg viewBox="0 0 20 20">
-          <path d={rightArrow}></path>
-        </svg>
-      </span>
+      <LeftArrow
+        className={currentPage === 1 ? "disabled" : null}
+        onClick={() => handleClick("left")}
+      />
+
+      <p>
+        Strona: {currentPage} z {allPages}
+      </p>
+
+      <RightArrow
+        className={currentPage === allPages ? "disabled" : null}
+        onClick={() => handleClick("right")}
+      />
     </StyledPagination>
   )
 }
-export default Pagination
+
+const mapStateToProps = ({ pagination }) => ({
+  currentPage: pagination.currentPage,
+  allPages: pagination.allPages,
+})
+
+export default connect(mapStateToProps, { setPaginationPage })(Pagination)

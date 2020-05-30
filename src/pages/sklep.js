@@ -6,9 +6,10 @@ import SEO from "../components/molecules/SEO"
 import ShopNavigatorBar from "../components/molecules/ShopNavigatorBar"
 import ProductHandlingPanel from "../components/organisms/ProductHandlingPanel"
 import AllProductsGallery from "../components/organisms/AllProductsGallery"
+import Pagination from "../components/molecules/Pagination"
 import device from "../styles/mediaBreakpoints"
 
-const Wraper = styled.section`
+const Main = styled.main`
   width: 90%;
   margin: 0 auto;
   max-width: 1280px;
@@ -25,10 +26,13 @@ const ShopPage = () => (
 
     <ShopNavigatorBar />
 
-    <Wraper>
+    <Main>
       <ProductHandlingPanel />
-      <AllProductsGallery />
-    </Wraper>
+      <div>
+        <AllProductsGallery />
+        <Pagination />
+      </div>
+    </Main>
   </MainLayout>
 )
 

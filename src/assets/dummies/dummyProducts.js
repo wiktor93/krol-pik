@@ -3,6 +3,7 @@ const dummyProducts = [
     id: 1,
     productName: "Rower MTB 29 cali",
     category: "Rowery",
+    subcategory: "",
     manufacturer: "Romet",
     pictureURL: "https://bit.ly/2Z3IvVJ",
     images: [
@@ -39,6 +40,7 @@ const dummyProducts = [
     id: 4,
     productName: "Bagażnik",
     category: "Akcesoria rowerowe",
+    subcategory: "",
     manufacturer: "BTWIN",
     pictureURL: "https://bit.ly/3bwpa1Z",
     SKUCode: "56H35Y2",
@@ -48,6 +50,7 @@ const dummyProducts = [
     id: 5,
     productName: "Kurtka przeciwwiatrowa",
     category: "Odzież rowerowa",
+    subcategory: "",
     manufacturer: "BTWIN",
     pictureURL: "https://bit.ly/2T4HeKn",
     SKUCode: "6H234G2",

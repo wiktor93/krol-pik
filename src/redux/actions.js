@@ -2,12 +2,24 @@ import {
   NOTIFICATION_SWITCH,
   SET_FILTER_BAR_EXPANSION,
   UPDATE_SORTING_BAR,
-  CATEGORY_LIST_SWITCH,
+  SET_CATEGORY_LIST_SWITCH,
   UPDATE_CHOSEN_CATEGORY,
   SET_PRICE_RANGE,
   SET_CHECKED_MANUFACTURERS,
   SET_SEARCH_BAR_INPUT_VALUE,
+  SET_PAGINATION_PAGE,
+  SET_ALL_PAGINATION_PAGES,
 } from "./actionTypes"
+
+export const setAllPaginationPages = allPages => ({
+  type: SET_ALL_PAGINATION_PAGES,
+  payload: allPages,
+})
+
+export const setPaginationPage = pageNumber => ({
+  type: SET_PAGINATION_PAGE,
+  payload: pageNumber,
+})
 
 export const setSearchBarInputValue = value => ({
   type: SET_SEARCH_BAR_INPUT_VALUE,
@@ -34,8 +46,8 @@ export const updateChosenCategory = category => ({
   payload: { chosenCategory: category },
 })
 
-export const categoryListSwitch = isOpen => ({
-  type: CATEGORY_LIST_SWITCH,
+export const setCategoryListSwitch = isOpen => ({
+  type: SET_CATEGORY_LIST_SWITCH,
   payload: { isOpen },
 })
 

@@ -3,11 +3,13 @@ import {
   NOTIFICATION_SWITCH,
   SET_FILTER_BAR_EXPANSION,
   UPDATE_SORTING_BAR,
-  CATEGORY_LIST_SWITCH,
+  SET_CATEGORY_LIST_SWITCH,
   UPDATE_CHOSEN_CATEGORY,
   SET_PRICE_RANGE,
   SET_CHECKED_MANUFACTURERS,
   SET_SEARCH_BAR_INPUT_VALUE,
+  SET_PAGINATION_PAGE,
+  SET_ALL_PAGINATION_PAGES,
 } from "./actionTypes"
 import dummyProducts from "../assets/dummies/dummyProducts"
 import extractManufacturers from "../utils/extractManufacturers"
@@ -37,12 +39,24 @@ const initialState = {
     sortBy: "latest",
   },
   searchBarInputValue: "",
+  pagination: {
+    currentPage: 1,
+    allPages: null,
+  },
 }
 
-const searchBarReducer = (
-  prevState = initialState.searchBarInputValue,
-  action
-) => {
+const paginationReducer = (prevState = initialState.pagination, action) => {
+  switch (action.type) {
+    case SET_PAGINATION_PAGE:
+      return { ...prevState, currentPage: action.payload }
+    case SET_ALL_PAGINATION_PAGES:
+      return { ...prevState, allPages: action.payload }
+    default:
+      return prevState
+  }
+}
+
+const searchBarReducer = (prevState = "", action) => {
   switch (action.type) {
     case SET_SEARCH_BAR_INPUT_VALUE:
       return action.payload
@@ -54,7 +68,7 @@ const searchBarReducer = (
 
 const categoryListReducer = (prevState = initialState.categoryList, action) => {
   switch (action.type) {
-    case CATEGORY_LIST_SWITCH:
+    case SET_CATEGORY_LIST_SWITCH:
       return { ...prevState, ...action.payload }
     case UPDATE_CHOSEN_CATEGORY:
       return { ...prevState, ...action.payload }
@@ -95,6 +109,7 @@ const notificationReducer = (prevState = initialState.notification, action) => {
 }
 
 export default combineReducers({
+  pagination: paginationReducer,
   searchBarInputValue: searchBarReducer,
   maxPrice: () => maxPrice,
   products: () => initialState.products,

@@ -78,3 +78,5 @@ dummies/
 firebase*
 
 jsconfig.json
+
+.vscode

@@ -82,7 +82,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Król Pik - Salon Rowerowy`,
-        short_name: `starter`,
+        short_name: `Król Pik`,
         lang: `fr`,
         start_url: `/`,
         background_color: `#fff`,

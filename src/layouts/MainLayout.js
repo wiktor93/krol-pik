@@ -11,6 +11,11 @@ import NotificationPupUp from "../components/atoms/NotificationPopUp"
 
 const Wraper = styled.div`
   min-height: 101vh;
+  display: flex;
+  flex-direction: column;
+  main {
+    margin-bottom: 75px;
+  }
 `
 
 const MainLayout = ({ children }) => {

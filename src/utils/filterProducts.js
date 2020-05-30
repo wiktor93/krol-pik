@@ -33,20 +33,8 @@ const filterProducts = (
   //filter by searched value
   if (searchBarInputValue)
     filteredArray = filteredArray.filter(product => {
-      const {
-        productName,
-        category,
-        manufacturer,
-        SKUCode,
-        subcategory,
-      } = product
-      const searchableItems = [
-        productName,
-        category,
-        manufacturer,
-        SKUCode,
-        subcategory,
-      ]
+      const { productName, manufacturer, SKUCode } = product
+      const searchableItems = [productName, manufacturer, SKUCode]
       let isItemFound = false
 
       for (const item of searchableItems) {
