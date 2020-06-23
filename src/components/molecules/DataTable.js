@@ -36,13 +36,13 @@ const StyledWraper = styled.ul`
   }
 `
 
-const DataTable = ({ arrayOfObjects }) => {
+const DataTable = ({ dataObject }) => {
   return (
     <StyledWraper>
-      {arrayOfObjects.map((el, i) => (
+      {dataObject.map((el, i) => (
         <li key={i} className="row">
-          <div>{Object.keys(el)[0]}</div>
-          <div>{Object.values(el)[0]}</div>
+          <div>{el.name}</div>
+          <div>{el.value}</div>
         </li>
       ))}
     </StyledWraper>

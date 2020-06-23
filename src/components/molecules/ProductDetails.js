@@ -13,7 +13,11 @@ const ProductDetails = ({ detailsArray }) => {
   return (
     <StyledWraper>
       <h2>Szczegóły produktu</h2>
-      <DataTable arrayOfObjects={detailsArray} />
+      {detailsArray.length ? (
+        <DataTable dataObject={detailsArray} />
+      ) : (
+        <h4>Brak dodatkowych informacji</h4>
+      )}
     </StyledWraper>
   )
 }

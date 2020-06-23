@@ -8,11 +8,11 @@ import ImageSlider from "../components/molecules/ImageSlider"
 import ProductInfoColumn from "../components/molecules/ProductInfoColumn"
 import ProductDetails from "../components/molecules/ProductDetails"
 import dummyProducts from "../assets/dummies/dummyProducts"
-import dummyProductDetails from "../assets/dummies/dummyProductDetails"
 import device from "../styles/mediaBreakpoints"
 
 const StyledGridSection = styled.section`
-  margin: 0 auto 75px;
+  margin: 0 auto;
+  padding: 25px 0 75px;
   width: 90%;
   max-width: 1280px;
   display: grid;
@@ -37,7 +37,7 @@ const ProductPageLayout = props => {
         <ProductInfoColumn product={product} productPath={path} />
       </StyledGridSection>
 
-      <ProductDetails detailsArray={dummyProductDetails} />
+      <ProductDetails detailsArray={product.productDetails} />
     </MainLayout>
   )
 }

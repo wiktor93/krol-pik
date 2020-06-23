@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css, keyframes } from "styled-components"
 
 export const inputMixin = css`
   width: 100%;
@@ -20,4 +20,12 @@ export const cardShadowMixin = css`
 export const hoverShadowMixin = css`
   box-shadow: 0px 4px 8px rgba(46, 41, 51, 0.08),
     0px 8px 16px rgba(71, 63, 79, 0.16);
+`
+export const fading = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: 1;
+  }
 `

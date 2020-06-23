@@ -21,6 +21,9 @@ const CollapseContentWraper = styled.div`
   display: grid;
   grid-row-gap: 25px;
   padding: 8px 16px;
+  button {
+    ${border1Mixin};
+  }
 `
 
 const FilterBar = props => {

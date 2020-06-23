@@ -1,5 +1,6 @@
 import {
   NOTIFICATION_SWITCH,
+  SET_NOTIFICATION_TEXT,
   SET_FILTER_BAR_EXPANSION,
   UPDATE_SORTING_BAR,
   SET_CATEGORY_LIST_SWITCH,
@@ -56,11 +57,13 @@ export const updateSortingBar = (isOpen, sortBy) => ({
   payload: { isOpen, sortBy },
 })
 
-export const notificationSwitch = (
-  visibility,
-  message,
-  severity = "success"
-) => ({
+export const setNotificationText = (message, severity) => ({
+  //severity = (success, error, warning, info)
+  type: SET_NOTIFICATION_TEXT,
+  payload: { message, severity },
+})
+
+export const notificationSwitch = visibility => ({
   type: NOTIFICATION_SWITCH,
-  payload: { visibility, message, severity },
+  payload: visibility,
 })

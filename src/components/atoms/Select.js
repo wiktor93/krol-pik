@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import {
   FormControl,
   InputLabel,
@@ -6,18 +6,43 @@ import {
   MenuItem,
 } from "@material-ui/core"
 
-const Select = ({ inputLabel }) => {
-  const [value, setValue] = useState("")
+const Select = props => {
+  const {
+    optionNumber,
+    inputLabel,
+    values,
+    customDataItems,
+    setCustomDataItems,
+  } = props
+
+  const selectedValue = customDataItems[`data-item-custom${optionNumber}-value`]
+
   const handleChange = e => {
-    setValue(e.target.value)
+    const { id, value } = e.target.dataset
+    const updatedOption = {}
+    updatedOption[`data-item-custom${id}-value`] = value
+
+    setCustomDataItems({
+      ...customDataItems,
+      ...updatedOption,
+    })
   }
+
   return (
     <FormControl variant="outlined">
       <InputLabel>{inputLabel}</InputLabel>
-      <MUISelect value={value} onChange={handleChange} label={inputLabel}>
-        <MenuItem value={10}>Opcja 1</MenuItem>
-        <MenuItem value={20}>Opcja 2</MenuItem>
-        <MenuItem value={30}>Opcja 3</MenuItem>
+      <MUISelect value={selectedValue} label={inputLabel}>
+        {values.split("|").map((value, i) => (
+          <MenuItem
+            key={i}
+            data-id={optionNumber}
+            data-value={value}
+            value={value}
+            onClick={handleChange}
+          >
+            {value}
+          </MenuItem>
+        ))}
       </MUISelect>
     </FormControl>
   )

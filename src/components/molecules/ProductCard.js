@@ -2,16 +2,16 @@ import React from "react"
 import styled from "styled-components"
 
 import accoutingNumberFormat from "../../utils/accoutingNumberFormat"
-import { hoverShadowMixin } from "../../styles/styledMixins"
+import { hoverShadowMixin, fading } from "../../styles/styledMixins"
 
 const StyledArticle = styled.article`
   height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   transition: 0.3s;
   text-align: center;
+  animation: ${fading} 0.3s linear;
 
   picture {
     overflow: hidden;

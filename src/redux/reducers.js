@@ -1,6 +1,7 @@
 import { combineReducers } from "redux"
 import {
   NOTIFICATION_SWITCH,
+  SET_NOTIFICATION_TEXT,
   SET_FILTER_BAR_EXPANSION,
   UPDATE_SORTING_BAR,
   SET_CATEGORY_LIST_SWITCH,
@@ -102,6 +103,8 @@ const filterBarReducer = (prevState = initialState.filterBar, action) => {
 const notificationReducer = (prevState = initialState.notification, action) => {
   switch (action.type) {
     case NOTIFICATION_SWITCH:
+      return { ...prevState, visibility: action.payload }
+    case SET_NOTIFICATION_TEXT:
       return { ...prevState, ...action.payload }
     default:
       return prevState

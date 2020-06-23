@@ -69,14 +69,14 @@ export const query = graphql`
     mobileImage: file(name: { eq: "hero-mobile" }) {
       childImageSharp {
         fluid(quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
     desktopImage: file(name: { eq: "hero" }) {
       childImageSharp {
         fluid(maxWidth: 1920, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }

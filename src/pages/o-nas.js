@@ -18,6 +18,7 @@ const HistorySection = styled.section`
   p {
     text-align: justify;
     font-family: "Lato", sans-serif;
+    line-height: 1.5rem;
   }
 `
 

@@ -55,7 +55,7 @@ const AllProductsGallery = props => {
   useEffect(() => {
     const allPages = Math.ceil(filteredProducts.length / itemsPerPage)
     setAllPaginationPages(allPages || 1)
-  }, [filteredProducts])
+  }, [filteredProducts, setAllPaginationPages])
 
   return (
     <Wraper>
