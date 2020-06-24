@@ -3,11 +3,16 @@ import { Snackbar } from "@material-ui/core"
 import { Alert } from "@material-ui/lab"
 import { connect } from "react-redux"
 
-import { notificationSwitch } from "../../redux/actions"
+import { setNotificationVisibility } from "../../redux/actions"
 
-const NotificationPopUp = ({ notification, notificationSwitch }) => {
+const NotificationPopUp = ({ notification, setNotificationVisibility }) => {
   const { visibility, message, severity } = notification
-  const handleSnackBarClose = () => notificationSwitch(false)
+  const handleSnackBarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return
+    }
+    setNotificationVisibility(false)
+  }
 
   return (
     <Snackbar
@@ -25,6 +30,6 @@ const NotificationPopUp = ({ notification, notificationSwitch }) => {
 
 const mapStateToProps = ({ notification }) => ({ notification })
 
-export default connect(mapStateToProps, { notificationSwitch })(
-  NotificationPopUp
-)
+export default connect(mapStateToProps, {
+  setNotificationVisibility,
+})(NotificationPopUp)

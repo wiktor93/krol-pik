@@ -1,5 +1,5 @@
 import {
-  NOTIFICATION_SWITCH,
+  SET_NOTIFICATION_VISIBILITY,
   SET_NOTIFICATION_TEXT,
   SET_FILTER_BAR_EXPANSION,
   UPDATE_SORTING_BAR,
@@ -63,7 +63,7 @@ export const setNotificationText = (message, severity) => ({
   payload: { message, severity },
 })
 
-export const notificationSwitch = visibility => ({
-  type: NOTIFICATION_SWITCH,
+export const setNotificationVisibility = visibility => ({
+  type: SET_NOTIFICATION_VISIBILITY,
   payload: visibility,
 })

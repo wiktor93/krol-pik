@@ -6,7 +6,10 @@ import Button from "../atoms/Button"
 import { addToBasket } from "../../assets/SVGIconPaths"
 import Select from "../atoms/Select"
 import accoutingNumberFormat from "../../utils/accoutingNumberFormat"
-import { notificationSwitch, setNotificationText } from "../../redux/actions"
+import {
+  setNotificationVisibility,
+  setNotificationText,
+} from "../../redux/actions"
 import checkInputValues from "../../utils/checkInputValues"
 
 const StyledWraper = styled.div`
@@ -32,7 +35,7 @@ const ProductInfoColumn = props => {
   const {
     product,
     productPath,
-    notificationSwitch,
+    setNotificationVisibility,
     setNotificationText,
   } = props
   const { productName, SKUCode, price, pictureURL, productOptions } = product
@@ -47,13 +50,14 @@ const ProductInfoColumn = props => {
   const areInputsChosen = checkInputValues(customDataItems)
 
   const handleButtonClick = () => {
-    if (!areInputsChosen)
+    if (areInputsChosen)
+      setNotificationText("Produkt został dodany do koszyka.", "success")
+    else
       setNotificationText(
         "Aby dodać przedmiot do koszyka, wybierz dostępne opcje.",
         "info"
       )
-    else setNotificationText("Produkt został dodany do koszyka.", "success")
-    notificationSwitch(true)
+    setNotificationVisibility(true)
   }
   const formatedPrice = accoutingNumberFormat(price)
 
@@ -94,9 +98,11 @@ const ProductInfoColumn = props => {
       >
         Dodaj do koszyka
       </Button>
+      <Button onClick={handleButtonClick}>test</Button>
     </StyledWraper>
   )
 }
-export default connect(null, { notificationSwitch, setNotificationText })(
-  ProductInfoColumn
-)
+export default connect(null, {
+  setNotificationVisibility,
+  setNotificationText,
+})(ProductInfoColumn)
