@@ -98,7 +98,6 @@ const ProductInfoColumn = props => {
       >
         Dodaj do koszyka
       </Button>
-      <Button onClick={handleButtonClick}>test</Button>
     </StyledWraper>
   )
 }

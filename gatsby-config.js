@@ -23,7 +23,7 @@ module.exports = {
         <billing section="bottom">
 
         <fieldset class="snipcart-form__set">
-          <div className="snipcart-form__field">
+          <div class="snipcart-form__field">
             <snipcart-label  class="snipcart__font--tiny"   for="phone"  >
                 Nr telefonu
                 </snipcart-label>

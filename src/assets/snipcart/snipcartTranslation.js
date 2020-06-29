@@ -61,20 +61,20 @@ module.exports = snipcartTranslation = {
     use_different_shipping_address: "Uzyj innego adresy do wysyłki",
   },
   customer: {
-    information: "Customer information",
+    information: "Informacje dla klientów",
   },
   customer_dashboard: {
-    my_account: "My account",
-    ordered_on: "Ordered on",
-    total: "Total",
+    my_account: "Moje konto",
+    ordered_on: "Zamówione w dniu",
+    total: "Łącznie",
     status: "Status",
-    order: "Order %{invoice_number}",
-    order_details: "Order details",
-    loading: "Loading...",
-    no_orders: "No orders found.",
-    sign_out: "Sign out",
+    order: "Zamówienie %{invoice_number}",
+    order_details: "Szczegóły zamówienia",
+    loading: "Ładowanie...",
+    no_orders: "Nie znaleziono zamówień.",
+    sign_out: "Wyloguj się",
     show_more_orders:
-      "Show %{smart_count} more order |||| Show %{smart_count} more orders",
+      "Pokaż %{smart_count} więcej zamówień |||| Pokaż %{smart_count} więcej zamówień",
   },
   signin_form: {
     signin: "Zaloguj",
@@ -97,34 +97,34 @@ module.exports = snipcartTranslation = {
   },
   shipping: {
     title: "Wysyłka",
-    shipping_to: "Shipping to:",
-    address: "Shipping address",
-    method: "Shipping method",
+    shipping_to: "Wysyłka do:",
+    address: "Adres wysyłki",
+    method: "Sposób wysyłki",
   },
   payment: {
     form: {
-      deferred_payment_title: "Deferred Payment",
+      deferred_payment_title: "Opóźniona płatność",
       deferred_payment_instructions:
-        "By placing this order, you agree to pay later through the payment method identified by the merchant.",
-      card_label: "Credit card",
-      card_number: "Card number",
+        "Składając to zamówienie, zgadzasz się zapłacić później za pomocą metody płatności określonej przez sprzedawcę.",
+      card_label: "Karta płatnicza",
+      card_number: "Numer karty",
       card_expiration: "MM/YY",
       card_cvv: "CVV",
-      card_postal_code: "Postal code",
+      card_postal_code: "Kod pocztowy",
     },
-    still_pending_notice: "Your payment is still being processed.",
-    title: "Payment",
-    continue_to_payment: "Continue to payment",
-    credit_card: "Credit card",
-    place_order: "Place order",
-    preparing_payment_session: "Preparing payment...",
-    processing_payment: "Processing payment...",
-    checkout_with: "Checkout with",
-    checkout_with_method: "Checkout with %{method}",
+    still_pending_notice: "Twoja płatność jest przetwarzana.",
+    title: "Płatności",
+    continue_to_payment: "Przejdź do płatności",
+    credit_card: "Karta płatnicza",
+    place_order: "Złóż zamówienie",
+    preparing_payment_session: "Przygotowanie płatności...",
+    processing_payment: "Przetwarzanie płatności...",
+    checkout_with: "Sposób płatności",
+    checkout_with_method: "Sposób płatności %{method}",
     method_icon: "%{method} icon",
-    no_payment: "No payment is required for this order.",
+    no_payment: "Płatność za to zamówienie nie jest wymagana.",
     methods: {
-      card: "Credit card",
+      card: "Karta płatnicza",
       paypal: "PayPal",
       paypal_express_checkout: "PayPal",
       apple_pay: "Apple Pay",
@@ -163,64 +163,67 @@ module.exports = snipcartTranslation = {
     required: "To pole jest wymagane",
     invalid_expiry_year_past: "Karta wygasła.",
     email: "Wprowadź poprawny adres e-mail",
-    quantity_revised: "Quantity has been revised due to stock limitations.",
+    quantity_revised:
+      "Ilość została zmieniona z powodu ograniczeń magazynowych.",
     quantity_out_of_stock:
-      "Unfortunately, this item is out of stock, remove it from the cart to continue.",
+      "Przepraszamy, ten przedmiot jest aktualnie niedostępny. Prosimy o usunięcie go z koszyka, aby kontynuować.",
     error_payment_items_are_invalid: {
-      title: "Some items in your cart are invalid",
-      description: "Please review your order, or try again later.",
+      title: "Niektóre produkty w koszyku są nieprawidłowe.",
+      description: "Sprawdź zamówienie lub spróbuj ponownie później..",
     },
     order_validation: {
       domain_crawling: {
-        title: "Order couldn’t be processed.",
+        title: "Nie można przetworzyć zamówienia.",
         description:
-          "You have not been charged. Please contact store owner for details.",
+          "Nie zostałeś obciążony. Aby uzyskać szczegółowe informacje skontaktuj się z właścicielem sklepu.",
       },
       product_crawling: {
-        title: "Price of products in cart may have changed.",
+        title: "Cena produktów w koszyku mogła ulec zmianie.",
         description:
-          "Try removing and adding them to your cart. Please contact store owner for details.",
+          "Spróbuj usunąć i dodać przedmioty do koszyka. Aby uzyskać szczegółowe informacje skontaktuj się z właścicielem sklepu.",
       },
       stock_validation: {
-        title: "Product stock unavailable.",
+        title: "Produkt jest aktualnie niedostępny.",
         description:
-          "Some products may be out of stock for selected quantity. Revise quantity or contact store owner for details.",
+          "Niektóre produkty mogą być niedostępne dla wybranej ilości. Sprawdź ilość lub skontaktuj się z właścicielem sklepu, aby uzyskać szczegółowe informacje.",
       },
     },
     shipping: {
-      title: "Unable to calculate shipping",
-      description: "Try again later, or contact us for support.",
+      title: "Nie można obliczyć wysyłki",
+      description:
+        "Spróbuj ponownie później lub skontaktuj się z nami, aby uzyskać pomoc.",
     },
     payment_failed: {
-      title: "Unable to process payment",
-      description: "Try again later, or contact us for support.",
+      title: "Nie można przetworzyć płatności",
+      description:
+        "Spróbuj ponownie później lub skontaktuj się z nami, aby uzyskać pomoc.",
     },
     payment_authorization: {
-      title: "Unable to process payment",
-      default: "Please review billing and payment information.",
+      title: "Nie można przetworzyć płatności",
+      default: "Przejrzyj informacje rozliczeniowe i płatnicze.",
     },
     authentication_challenge: {
       failed: {
-        title: "Unable to process payment",
+        title: "Nie można przetworzyć płatności",
         description:
-          "We have not been able to authenticate your payment information. Please try again",
+          "Nie możemy uwierzytelnić informacji o płatności. Proszę spróbuj ponownie.",
       },
     },
-    customer_exists: "This email is already used.",
-    customer_password_missmatch: "The two passwords must match.",
-    invalid_credentials: "Invalid email or password.",
+    customer_exists: "Ten email jest już używany.",
+    customer_password_missmatch: "Dwa hasła muszą się zgadzać.",
+    invalid_credentials: "Nieprawidłowy e-mail lub hasło.",
     no_shipping_rates_found: {
-      title: "No shipping method available for your order",
-      description: "Please review shipping address or contact us.",
+      title: "Brak metody wysyłki dla twojego zamówienia.",
+      description: "Sprawdź adres wysyłki lub skontaktuj się z nami.",
     },
   },
   customer_orders: {
     loading: "Ładowanie...",
   },
   confirmation: {
-    thank_you_for_your_order: "Thank you for your order",
+    thank_you_for_your_order: "Dziękuję za Twoje zamówienie",
     async_confirmation_notice:
-      "Your order has been placed and is currently processing. You will receive a confirmation shortly.",
+      "Twoje zamówienie zostało złożone i jest obecnie przetwarzane. Wkrótce otrzymasz potwierdzenie.",
   },
   checkout: {
     shipping_taxes_calculated_when_address_provided:
