@@ -1,119 +1,72 @@
 import React from "react"
-import { Formik, Form, Field, ErrorMessage } from "formik"
+import TextField from "@material-ui/core/TextField"
 import styled from "styled-components"
+import { useForm, Controller } from "react-hook-form"
 
-import Input from "../atoms/Input"
 import Button from "../atoms/Button"
 
-const Wraper = styled.div`
-  form {
-    width: 90%;
-    max-width: 600px;
-    margin: 0 auto 50px auto;
+const StyledForm = styled.form`
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto 50px auto;
 
-    input,
-    textarea {
-      margin-bottom: 15px;
-    }
+  display: flex;
+  flex-direction: column;
 
-    label {
-      font-weight: 600;
-      padding-bottom: 3px;
-
-      div {
-        margin-left: 5px;
-        font-size: 12px;
-        font-weight: 400;
-        display: inline-block;
-        color: red;
-      }
-    }
+  .MuiTextField-root {
+    margin-bottom: 40px;
   }
 `
 
 const ContactForm = () => {
+  const { register, handleSubmit, watch, errors } = useForm()
+  const onSubmit = data => {
+    alert(JSON.stringify(data))
+  }
+
   return (
-    <Formik
-      initialValues={{
-        user: "",
-        email: "",
-        title: "",
-        message: "",
-      }}
-      validate={values => {
-        const fieldIsRequiredSign = "*"
-        const errors = {}
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <h2>Formularz kontaktowy</h2>
 
-        //user name validation
-        if (!values.title) errors.user = fieldIsRequiredSign
+      <TextField
+        name="name"
+        variant="outlined"
+        inputRef={register({ required: true })}
+        label="Imie i nazwisko"
+        error={errors.name ? true : false}
+      />
 
-        //email validation
-        if (!values.email) errors.email = fieldIsRequiredSign
-        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email))
-          errors.email = "adres e-mial jest niepoprawny"
+      <TextField
+        name="email"
+        variant="outlined"
+        inputRef={register({
+          required: true,
+          pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        })}
+        label="E-mail"
+        error={errors.email ? true : false}
+      />
 
-        //title validation
-        if (!values.title) errors.title = fieldIsRequiredSign
+      <TextField
+        name="title"
+        variant="outlined"
+        inputRef={register({ required: true })}
+        label="Tytuł wiadomości"
+        error={errors.title ? true : false}
+      />
 
-        //message validation
-        if (!values.message) errors.message = fieldIsRequiredSign
+      <TextField
+        name="message"
+        variant="outlined"
+        inputRef={register({ required: true })}
+        label="Treść"
+        multiline
+        rows={10}
+        error={errors.message ? true : false}
+      />
 
-        return errors
-      }}
-      onSubmit={(values, actions) => {
-        // fetch("/.netlify/functions/sendmail", {
-        //   method: "POST",
-        //   body: JSON.stringify(values),
-        // })
-        //   .then(response => {
-        //     alert("Wiadomość została wysłana.")
-        //     actions.resetForm()
-        //   })
-        //   .catch(() => {
-        //     alert(
-        //       "Przepraszamy, coś poszło nie tak. Prosimy spróbować później."
-        //     )
-        //   })
-        //   .finally(() => actions.setSubmitting(false))
-        alert(JSON.stringify(values))
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Wraper>
-          <Form>
-            <h2>Formularz kontaktowy</h2>
-
-            <label htmlFor="user">
-              Imię i nazwisko
-              <ErrorMessage name="user" component="div" />
-            </label>
-            <Field as={Input} type="text" name="user" />
-
-            <label htmlFor="email">
-              E-mail
-              <ErrorMessage name="email" component="div" />
-            </label>
-            <Field as={Input} type="text" name="email" />
-
-            <label htmlFor="title">
-              Tytuł wiadomości
-              <ErrorMessage name="title" component="div" />
-            </label>
-            <Field as={Input} type="text" name="title" />
-
-            <label htmlFor="message">
-              Treść
-              <ErrorMessage name="message" component="div" />
-            </label>
-            <Field as={Input} type="textarea" name="message" />
-
-            <Button type="submit" disabled={isSubmitting}>
-              Wyślij
-            </Button>
-          </Form>
-        </Wraper>
-      )}
-    </Formik>
+      <Button type="submit">Wyślij</Button>
+    </StyledForm>
   )
 }
 

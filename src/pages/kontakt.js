@@ -5,8 +5,8 @@ import MainLayout from "../layouts/MainLayout"
 import SEO from "../components/molecules/SEO"
 import Header from "../components/molecules/Header"
 import BusinessCard from "../components/molecules/BusinessCard"
-import ContactForm from "../components/molecules/ContactForm"
 import InteractiveMap from "../components/molecules/InteractiveMap"
+import ContactForm from "../components/molecules/ContactForm"
 
 const ContactPage = ({ data }) => (
   <MainLayout>

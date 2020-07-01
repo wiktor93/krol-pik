@@ -27,7 +27,7 @@ module.exports = {
             <snipcart-label  class="snipcart__font--tiny"   for="phone"  >
                 Nr telefonu
                 </snipcart-label>
-              <snipcart-input name="phone"></snipcart-input>
+              <snipcart-input name="phone" required></snipcart-input>
           </div>
 
           <div class="snipcart-form__field-checkbox">
