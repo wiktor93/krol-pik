@@ -10,6 +10,13 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   font-family: "Montserrat", sans-serif;
+
+  &.freeze {
+    overflow: hidden;
+    position: fixed;
+    height: 0;
+    width: 100%;
+  }
 }
 
 h1{

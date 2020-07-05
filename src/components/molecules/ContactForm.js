@@ -1,7 +1,7 @@
 import React from "react"
 import TextField from "@material-ui/core/TextField"
 import styled from "styled-components"
-import { useForm, Controller } from "react-hook-form"
+import { useForm } from "react-hook-form"
 
 import Button from "../atoms/Button"
 
@@ -19,7 +19,7 @@ const StyledForm = styled.form`
 `
 
 const ContactForm = () => {
-  const { register, handleSubmit, watch, errors } = useForm()
+  const { register, handleSubmit, errors } = useForm()
   const onSubmit = data => {
     alert(JSON.stringify(data))
   }
@@ -65,7 +65,9 @@ const ContactForm = () => {
         error={errors.message ? true : false}
       />
 
-      <Button type="submit">Wyślij</Button>
+      <Button type="submit" height="56px">
+        Wyślij
+      </Button>
     </StyledForm>
   )
 }
