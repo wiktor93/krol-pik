@@ -40,25 +40,29 @@ const ProductPicture = styled.picture`
   width: 100%;
   height: max-content;
   overflow: hidden;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+  &.full-size {
+    height: 100%;
+    img {
+      max-height: 100%;
+    }
+  }
 
   img {
     height: 100%;
     max-height: 400px;
     width: 100%;
     object-fit: contain;
-    cursor: zoom-in;
+    cursor: pointer;
   }
 `
 
 const ImageSlider = ({ product }) => {
   const { productName, pictureURL } = product
   const [selectedImgIndex, setSelectedImgIndex] = useState(0)
-  const images = [
-    pictureURL,
-    "https://images.internetstores.de/products//1114037/02/3e24ec/Serious_Bear_Rock_Powertube_black_matt[640x480].jpg?forceSize=true&forceAspectRatio=true&useTrim=true",
-  ]
-  const [isModalOpen, setModalOpen] = useState(false)
+  const images = [pictureURL, pictureURL]
+  const [modalToggle, setModalToogle] = useState(false)
 
   function handleImageChange(action, index) {
     if (action === "forward" && selectedImgIndex < images.length - 1) {
@@ -70,13 +74,21 @@ const ImageSlider = ({ product }) => {
     if (action === "pick") setSelectedImgIndex(index)
   }
 
+  function handleModalClose() {
+    setModalToogle(false)
+    document.querySelector("body").classList.remove("freeze")
+  }
+
   useEffect(() => {
-    if (isModalOpen) document.querySelector("body").classList.add("freeze")
+    if (modalToggle) document.querySelector("body").classList.add("freeze")
   })
 
   return (
-    <Wraper className={isModalOpen ? "isolated-modal" : null}>
-      <ProductPicture onClick={() => setModalOpen(true)}>
+    <Wraper className={modalToggle ? "isolated-modal" : null}>
+      <ProductPicture
+        onClick={() => setModalToogle(true)}
+        className={modalToggle ? "full-size" : null}
+      >
         <img src={images[selectedImgIndex]} alt={productName} />
       </ProductPicture>
 
@@ -105,7 +117,10 @@ const ImageSlider = ({ product }) => {
           />
         )}
       </div>
-      <ModalCloseButton isOpen={isModalOpen} closingFunction={setModalOpen} />
+      <ModalCloseButton
+        isOpen={modalToggle}
+        closingFunction={handleModalClose}
+      />
     </Wraper>
   )
 }

@@ -3,8 +3,11 @@ import styled from "styled-components"
 import PropTypes from "prop-types"
 
 import getLastMovableThumbIndex from "../../utils/getLastMovableThumbIndex"
+import useCheckScreenWidth from "../../utils/useCheckScreenWidth"
 
 const Wraper = styled.div`
+  display: flex;
+  align-items: center;
   height: 80px;
   max-width: 400px;
   overflow: hidden;
@@ -52,19 +55,25 @@ const Thumbnail = styled.picture`
 function ThumbnailsContainer(props) {
   const { images, selectedImgIndex, handleImageChange } = props
   const thumbnailsToMove = getLastMovableThumbIndex(images, selectedImgIndex)
+  const isSmallerThanBreakPoint = useCheckScreenWidth(768)
+
   return (
     <Wraper>
-      <Slider thumbnailsToMove={thumbnailsToMove}>
-        {images.map((image, i) => (
-          <Thumbnail
-            key={i}
-            className={selectedImgIndex === i ? "active" : null}
-            onClick={() => handleImageChange("pick", i)}
-          >
-            <img src={image} alt={`Zdjęcie nr ${i} `} />
-          </Thumbnail>
-        ))}
-      </Slider>
+      {isSmallerThanBreakPoint ? (
+        <span>{`${selectedImgIndex + 1} z ${images.length}`}</span>
+      ) : (
+        <Slider thumbnailsToMove={thumbnailsToMove}>
+          {images.map((image, i) => (
+            <Thumbnail
+              key={i}
+              className={selectedImgIndex === i ? "active" : null}
+              onClick={() => handleImageChange("pick", i)}
+            >
+              <img src={image} alt={`Zdjęcie nr ${i} `} />
+            </Thumbnail>
+          ))}
+        </Slider>
+      )}
     </Wraper>
   )
 }

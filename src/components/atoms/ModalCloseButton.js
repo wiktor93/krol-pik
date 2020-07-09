@@ -21,7 +21,7 @@ const StyledCloseButton = styled.div`
 function ModalCloseButton({ isOpen, closingFunction }) {
   return (
     <StyledCloseButton isOpen={isOpen}>
-      <CloseIcon fontSize="large" onClick={() => closingFunction(false)} />
+      <CloseIcon fontSize="large" onClick={closingFunction} />
     </StyledCloseButton>
   )
 }
