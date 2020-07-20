@@ -33,7 +33,8 @@ const Thumbnail = styled.picture`
     right: 1px;
     bottom: 0;
     height: 2px;
-    background-color: black;
+    background-color: white;
+    border-bottom: 2px solid black;
     transition: 0.3s;
   }
   &.active::before {

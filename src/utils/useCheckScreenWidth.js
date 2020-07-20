@@ -15,6 +15,11 @@ const useCheckScreenWidth = (breakPoint = 1024) => {
     }
 
     window.addEventListener("resize", checkScreenWidth)
+
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth)
+    }
+    // eslint-disable-next-line
   }, [])
 
   return isSmallerThanBreakPoint

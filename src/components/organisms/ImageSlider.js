@@ -5,6 +5,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext"
 
 import ThumbnailsContainer from "../molecules/ThumbnailsContainer"
 import ModalCloseButton from "../atoms/ModalCloseButton"
+import ProductPicture from "../atoms/ProductPicture"
 
 const Wraper = styled.div`
   display: flex;
@@ -36,28 +37,6 @@ const Wraper = styled.div`
   }
 `
 
-const ProductPicture = styled.picture`
-  width: 100%;
-  height: max-content;
-  overflow: hidden;
-  padding-bottom: 20px;
-
-  &.full-size {
-    height: 100%;
-    img {
-      max-height: 100%;
-    }
-  }
-
-  img {
-    height: 100%;
-    max-height: 400px;
-    width: 100%;
-    object-fit: contain;
-    cursor: pointer;
-  }
-`
-
 const ImageSlider = ({ product }) => {
   const { productName, pictureURL } = product
   const [selectedImgIndex, setSelectedImgIndex] = useState(0)
@@ -79,8 +58,26 @@ const ImageSlider = ({ product }) => {
     document.querySelector("body").classList.remove("freeze")
   }
 
+  function handleKeyDown({ keyCode }) {
+    switch (keyCode) {
+      case 27:
+        return handleModalClose()
+      case 39:
+        return handleImageChange("forward")
+      case 37:
+        return handleImageChange("backward")
+      default:
+        break
+    }
+  }
+
   useEffect(() => {
     if (modalToggle) document.querySelector("body").classList.add("freeze")
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   })
 
   return (
@@ -88,9 +85,9 @@ const ImageSlider = ({ product }) => {
       <ProductPicture
         onClick={() => setModalToogle(true)}
         className={modalToggle ? "full-size" : null}
-      >
-        <img src={images[selectedImgIndex]} alt={productName} />
-      </ProductPicture>
+        image={images[selectedImgIndex]}
+        alt={productName}
+      />
 
       <div className="thumbnails-wraper">
         {images.length > 1 && (

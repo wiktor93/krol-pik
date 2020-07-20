@@ -4,7 +4,15 @@ const data = {
   adress: "ul. Sandomierska 9, Tarnobrzeg",
   phoneNumber: "506 532 685",
   email: "pikrowery@gmail.com",
-  openingHours: "09:00 - 17:00",
+  openingHours: [
+    { id: 1, day: "poniedziałek", hours: "10:00 - 18:00" },
+    { id: 2, day: "wtorek", hours: "10:00 - 18:00" },
+    { id: 3, day: "środa", hours: "10:00 - 18:00" },
+    { id: 4, day: "czwartek", hours: "10:00 - 18:00" },
+    { id: 5, day: "piątek", hours: "10:00 - 18:00" },
+    { id: 6, day: "sobota", hours: "09:00 - 14:00" },
+    { id: 0, day: "niedziela", hours: "ZAMKNIĘTE" },
+  ],
   coordinates: [50.575845, 21.673297],
   aboutText: (
     <section>
